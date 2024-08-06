@@ -23,8 +23,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     # Apps
 
+    'authorization',
+    'blog',
+    'core',
+    'courses',
+    'training',
+    'users',
 
 
     # Lbraries
@@ -137,3 +144,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda _request: DEBUG
 }
+
+
+# Overrate User model
+
+AUTH_USER_MODEL = 'users.User'
