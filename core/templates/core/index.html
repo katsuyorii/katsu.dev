@@ -11,71 +11,29 @@
     <div class="main-courses">
         <h1 class="main-courses-title">Популярные курсы</h1>
         <div class="main-courses-flex">
+            {% for course in courses %}
                 <div class="main-courses-flex-item">
                     <div class="main-courses-flex-item-news">
                         <div class="main-courses-flex-item-news-circle-new"></div>
-                        <p class="main-courses-flex-item-news-text">Новинка</p>
+                        <p class="main-courses-flex-item-news-text">{{ course.get_status_display }}</p>
                     </div>
-                    <h2 class="main-courses-flex-item-name">Руководство по выживанию на Django. Уровень 0</h2>
-                    <p class="main-courses-flex-item-desc">Данный курс посвящен азам написания веб-приложений на фреймворке Django.</p>
+                    <h2 class="main-courses-flex-item-name">{{ course.title }}</h2>
+                    <p class="main-courses-flex-item-desc">{{ course.short_description }}</p>
                     <div class="main-courses-flex-item-info">
                         <div class="main-courses-flex-item-info-item">
                             <img class="main-courses-flex-item-info-image" src="{% static 'img/UX/time_icon.svg' %}" alt="Time">
-                            <p class="main-courses-flex-item-info-text">18 часов</p>
+                            <p class="main-courses-flex-item-info-text">{{ course.amount_hours }} часов</p>
                         </div>
                         <div class="main-courses-flex-item-info-item">
                             <img class="main-courses-flex-item-info-image" src="{% static 'img/UX/students_icon.png' %}" alt="Amount students">
-                            <p class="main-courses-flex-item-info-text">124 студента</p>
+                            <p class="main-courses-flex-item-info-text">{{ course.amount_students }} студента</p>
                         </div>
                     </div>
                     <div class="main-courses-flex-item-button-block">
                         <a class="main-courses-flex-item-button" href="#">Начать обучение</a>
                     </div>
                 </div>
-            
-                <div class="main-courses-flex-item">
-                    <div class="main-courses-flex-item-news">
-                        <div class="main-courses-flex-item-news-circle-hit"></div>
-                        <p class="main-courses-flex-item-news-text">Хит</p>
-                    </div>
-                    <h2 class="main-courses-flex-item-name">Руководство по выживанию на Django. Уровень 1</h2>
-                    <p class="main-courses-flex-item-desc">Данный курс посвящен азам написания веб-приложений на фреймворке Django.</p>
-                    <div class="main-courses-flex-item-info">
-                        <div class="main-courses-flex-item-info-item">
-                            <img class="main-courses-flex-item-info-image" src="img/UX-Icons/time-icon.svg" alt="Time">
-                            <p class="main-courses-flex-item-info-text">18 часов</p>
-                        </div>
-                        <div class="main-courses-flex-item-info-item">
-                            <img class="main-courses-flex-item-info-image" src="img/UX-Icons/students-icon.png" alt="Amount students">
-                            <p class="main-courses-flex-item-info-text">124 студента</p>
-                        </div>
-                    </div>
-                    <div class="main-courses-flex-item-button-block">
-                        <a class="main-courses-flex-item-button" href="#">Начать обучение</a>
-                    </div>
-                </div>
-            
-                <div class="main-courses-flex-item">
-                    <div class="main-courses-flex-item-news">
-                        <div class="main-courses-flex-item-news-circle-update"></div>
-                        <p class="main-courses-flex-item-news-text">Обновлено</p>
-                    </div>
-                    <h2 class="main-courses-flex-item-name">Руководство по выживанию на Django. Уровень 2</h2>
-                    <p class="main-courses-flex-item-desc">Данный курс посвящен азам написания веб-приложений на фреймворке Django.</p>
-                    <div class="main-courses-flex-item-info">
-                        <div class="main-courses-flex-item-info-item">
-                            <img class="main-courses-flex-item-info-image" src="img/UX-Icons/time-icon.svg" alt="Time">
-                            <p class="main-courses-flex-item-info-text">18 часов</p>
-                        </div>
-                        <div class="main-courses-flex-item-info-item">
-                            <img class="main-courses-flex-item-info-image" src="img/UX-Icons/students-icon.png" alt="Amount students">
-                            <p class="main-courses-flex-item-info-text">124 студента</p>
-                        </div>
-                    </div>
-                    <div class="main-courses-flex-item-button-block">
-                        <a class="main-courses-flex-item-button" href="#">Начать обучение</a>
-                    </div>
-                </div>
+            {% endfor %}
         </div>
     </div>
 

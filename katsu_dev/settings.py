@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
     'django_cleanup',
+    'django_ckeditor_5',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,25 @@ DEBUG_TOOLBAR_CONFIG = {
 # Overrate User model
 
 AUTH_USER_MODEL = 'users.User'
+
+
+# Settings for CKEditor
+
+CKEDITOR_5_UPLOADS = 'uploads/'
+
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': [
+            'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 
+            'numberedList', 'blockQuote', 'imageUpload'
+        ],
+        'image': {
+            'toolbar': ['imageTextAlternative', 'imageStyle:full', 'imageStyle:side']
+        },
+        'height': '300px',
+        'width': '100%',
+        'config': {
+            'placeholder': 'Start typing here...',
+        }
+    },
+}

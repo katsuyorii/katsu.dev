@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 
 from .models import SliderImage, Feedback
 from .forms import FeedbackForm
+from courses.models import Course
 
 
 class IndexView(TemplateView):
@@ -13,6 +14,7 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Платформа онлайн обучения katsu.dev'
         context['slider_images'] = SliderImage.objects.all()
+        context['courses'] = Course.objects.all().order_by('amount_students')[:3]
 
         return context
     
