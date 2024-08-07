@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import SliderImage, Feedback
+
+
+admin.site.register(SliderImage)
+admin.site.register(Feedback)

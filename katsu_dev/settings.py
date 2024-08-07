@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     # Lbraries
 
     'debug_toolbar',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [

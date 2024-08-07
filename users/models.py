@@ -3,10 +3,10 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    email = models.EmailField(verbose_name='Email', unique=True)
-    username = models.CharField(verbose_name='Имя пользователя', max_length=100)
+    """ Кастомная модель пользователя, включающая в себя email и аватар """
+    email = models.EmailField(verbose_name='Адрес эл. почты пользователя', unique=True)
+    username = models.CharField(verbose_name='Имя пользователя', max_length=30)
     avatar = models.ImageField(verbose_name='Изображение профиля', upload_to='users_profile_avatars', null=True, blank=True)
-    biography = models.CharField(verbose_name='Биография', null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
