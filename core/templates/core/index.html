@@ -3,9 +3,9 @@
 
 {% block content %}
     <div class="slider">
-        <img src="img/courses-logo/banner-slider-1.webp" alt="Image slider 1" class="slide">
-        <img src="img/courses-logo/course-logo.jpg" alt="Image slider 1" class="slide">
-        <img src="img/courses-logo/course-logo.jpg" alt="Image slider 1" class="slide">
+        {% for item in slider_images %}
+            <img src="{{ item.image.url }}" alt="{{ item.alt_text }}" class="slide">
+        {% endfor %}
     </div>
 
     <div class="main-courses">
