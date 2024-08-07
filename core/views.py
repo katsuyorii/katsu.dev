@@ -1,6 +1,8 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
+from django.urls import reverse_lazy
 
-from .models import SliderImage
+from .models import SliderImage, Feedback
+from .forms import FeedbackForm
 
 
 class IndexView(TemplateView):
@@ -26,9 +28,14 @@ class AboutView(TemplateView):
         return context
 
 
-class ContactsView(TemplateView):
+class ContactsView(CreateView):
     """ Представление для страницы сайта - «Контакты» """
+    model = Feedback
+    form_class = FeedbackForm
     template_name = 'core/contacts.html'
+
+    def get_success_url(self):
+        return reverse_lazy('contacts')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

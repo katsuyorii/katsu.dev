@@ -8,12 +8,13 @@
         <h1 class="contacts-flex-title">Обратная связь</h1>
         <div class="main-login-auth">
             <form class="main-login-auth-form" method="POST">
-                <label for="">Имя</label>
-                <input placeholder="Введите ваше имя" class="main-login-auth-block-input" type="text" name="" id="">
-                <label for="">Email</label>
-                <input placeholder="Введите ваш email" class="main-login-auth-block-input" type="email" name="" id="">
-                <label for="">Сообщение</label>
-                <textarea placeholder="Введите здесь ваше сообщение..." class="main-login-auth-block-input" rows="4" name="" id=""></textarea>
+                {% csrf_token %}
+                <label for="{{ form.username.id_for_label }}">Имя</label>
+                {{ form.username }}
+                <label for="{{ form.email.id_for_label }}">Адрес эл. почты</label>
+                {{ form.email }}
+                <label for="{{ form.message.id_for_label }}">Сообщение</label>
+                {{ form.message }}
                 <button class="main-login-auth-block-button" type="submit">Отправить</button>
             </form>
         </div>

@@ -20,7 +20,7 @@ class Feedback(models.Model):
     username = models.CharField(verbose_name='Имя пользователя', max_length=255)
     email = models.EmailField(verbose_name='Адрес эл. почты пользователя')
     message = models.TextField(verbose_name='Сообщение пользователя')
-    created_date = models.DateTimeField(verbose_name='Дата и время отправки сообщения', auto_created=True)
+    created_date = models.DateTimeField(verbose_name='Дата и время отправки сообщения', auto_now_add=True)
 
     class Meta:
         verbose_name = 'Сообщение обратной связи'
