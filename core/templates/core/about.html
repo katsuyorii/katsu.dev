@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="about-flex">
+        <h1 class="about-flex-title">О проекте</h1>
+        <div class="about-flex-column">
+            <div class="about-flex-column-item">
+                <h2 class="about-flex-column-item-title">Что такое katsu.dev?</h2>
+                <p class="about-flex-column-item-text">Это открытый бесплатный проект для изучения основ программирования. Интерактивные курсы с практикой рассчитаны на тех, кто только начал интересоваться разработкой. На Code Basics уже есть курсы по PHP, Java, JS, Python, Ruby, HTML, CSS, Racket, Elixir и Go.
+
+                    В 2020 году проект Code Basics занял 3 место на Международном конкурсе открытых онлайн-курсов EdCrunch Award OOC в номинации «Лучший внеплатформенный онлайн-курс».</p>
+            </div>
+
+            <div class="about-flex-column-item">
+                <h2 class="about-flex-column-item-title">Что такое katsu.dev?</h2>
+                <p class="about-flex-column-item-text">Это открытый бесплатный проект для изучения основ программирования. Интерактивные курсы с практикой рассчитаны на тех, кто только начал интересоваться разработкой. На Code Basics уже есть курсы по PHP, Java, JS, Python, Ruby, HTML, CSS, Racket, Elixir и Go.
+
+                    В 2020 году проект Code Basics занял 3 место на Международном конкурсе открытых онлайн-курсов EdCrunch Award OOC в номинации «Лучший внеплатформенный онлайн-курс».</p>
+            </div>
+
+            <div class="about-flex-column-item">
+                <div class="about-flex-column-item-row">
+                    <img class="about-flex-column-item-row-image" src="{% static 'img/social_icons/youtube_small_icon.svg' %}" alt="YouTube">
+                    <a class="about-flex-column-item-row-link" href="#">YouTube канал</a>
+                </div>
+                <div class="about-flex-column-item-row">
+                    <img class="about-flex-column-item-row-image-tt" src="{% static 'img/social_icons/tiktok_small_icon.svg' %}" alt="TikTok">
+                    <a class="about-flex-column-item-row-link" href="#">TikTok канал</a>
+                </div>
+                <div class="about-flex-column-item-row">
+                    <img class="about-flex-column-item-row-image-tg" src="{% static 'img/social_icons/telegram_small_icon.png' %}" alt="Telegram">
+                    <a class="about-flex-column-item-row-link" href="#">Telegram канал</a>
+                </div>
+            </div>
+
+            <div class="about-flex-column-item">
+                <p class="about-flex-column-item-icons">Icons by - <a class="about-flex-column-item-icons-link" href="https://icons8.ru/">Icons8</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
