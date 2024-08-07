@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+    <div class="contacts-flex">
+        <img class="main-login-image" src="{% static 'img/UX/feedback_icon.png' %}" alt="Feedback">
+        <h1 class="contacts-flex-title">Обратная связь</h1>
+        <div class="main-login-auth">
+            <form class="main-login-auth-form" method="POST">
+                <label for="">Имя</label>
+                <input placeholder="Введите ваше имя" class="main-login-auth-block-input" type="text" name="" id="">
+                <label for="">Email</label>
+                <input placeholder="Введите ваш email" class="main-login-auth-block-input" type="email" name="" id="">
+                <label for="">Сообщение</label>
+                <textarea placeholder="Введите здесь ваше сообщение..." class="main-login-auth-block-input" rows="4" name="" id=""></textarea>
+                <button class="main-login-auth-block-button" type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

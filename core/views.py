@@ -24,3 +24,14 @@ class AboutView(TemplateView):
         context['title'] = 'О проекте'
 
         return context
+
+
+class ContactsView(TemplateView):
+    """ Представление для страницы сайта - «Контакты» """
+    template_name = 'core/contacts.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Контакты'
+
+        return context
