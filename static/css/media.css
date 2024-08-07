@@ -1,0 +1,254 @@
+@media (max-width: 1280px) {
+    .wrapper {
+        width: 1050px;
+    }
+}
+
+@media (max-width: 1080px) {
+    .wrapper {
+        width: 850px;
+    }
+
+    .main-courses-flex-item-info-text {
+        font-size: 14px;
+    }
+
+    .main-reviews-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 30px;
+        align-items: stretch;
+    }
+
+    .courses-flex-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 880px) {
+    .wrapper {
+        width: 650px;
+    }
+
+    .header-flex-nav-menu {
+        display: none;
+    }
+
+    .header-flex-auth-menu {
+        display: none;
+    }
+
+    .header-flex-auth-hamburger {
+        display: block;
+    }
+
+    .main-courses-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 30px;
+        align-items: stretch;
+    }
+
+    .main-courses-flex-item-info-text {
+        font-size: 16px;
+    }
+
+    .main-links-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    .courses-flex-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .course-flex-chapter-row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .course-flex-chapter-left {
+        width: 100%;
+    }
+
+    .course-flex-chapter-right {
+        width: 100%;
+    }
+
+    .lesson-flex {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .lesson-flex-nav {
+        width: 100%;
+    }
+
+    .lesson-flex-wrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 680px) {
+    .wrapper {
+        width: 450px;
+    }
+
+    .main-courses-flex-item-info-text {
+        font-size: 16px;
+    }
+
+    .footer-flex {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 0px;
+        gap: 10px;
+    }
+
+    .main-login-auth {
+        width: 400px;
+    }
+
+    .courses-flex-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .course-flex-row-left-block {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .course-flex-info {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .course-flex-info-right {
+        width: 100%;
+    }
+
+    .lesson-flex {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .lesson-flex-nav {
+        width: 100%;
+    }
+
+    .lesson-flex-wrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        width: 400px;
+    }
+
+    .main-courses-flex-item-info-text {
+        font-size: 16px;
+    }
+
+    .main-reviews-flex-item-user {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .main-reviews-flex-item-user-info {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 3px;
+    }
+
+    .main-reviews-flex-item-reviewtext {
+        font-weight: 400;
+        font-style: italic;
+        text-align: center;
+    }
+
+    .main-login-auth {
+        width: 370px;
+    }
+
+    .course-flex-row-left {
+        text-align: center;
+    }
+
+    .main-courses-flex-item-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .lesson-flex {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .lesson-flex-nav {
+        width: 100%;
+    }
+
+    .lesson-flex-wrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 380px) {
+    .wrapper {
+        width: 380px;
+    }
+
+    .main-courses-flex-item-info-text {
+        font-size: 11px;
+    }
+
+    .main-login-auth {
+        width: 350px;
+    }
+
+    .course-flex-row-left-block {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .course-flex-row-left-start {
+        padding: 10px 8px;
+        font-size: 17px;
+    }
+
+    .course-flex-row-left-reg {
+        padding: 10px 8px;
+        font-size: 17px;
+    }
+
+    .main-courses-flex-item-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .lesson-flex {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .lesson-flex-nav {
+        width: 100%;
+    }
+
+    .lesson-flex-wrapper {
+        width: 100%;
+    }
+}

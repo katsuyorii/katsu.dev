@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="slider">
+        <img src="img/courses-logo/banner-slider-1.webp" alt="Image slider 1" class="slide">
+        <img src="img/courses-logo/course-logo.jpg" alt="Image slider 1" class="slide">
+        <img src="img/courses-logo/course-logo.jpg" alt="Image slider 1" class="slide">
+    </div>
+
+    <div class="main-courses">
+        <h1 class="main-courses-title">Популярные курсы</h1>
+        <div class="main-courses-flex">
+                <div class="main-courses-flex-item">
+                    <div class="main-courses-flex-item-news">
+                        <div class="main-courses-flex-item-news-circle-new"></div>
+                        <p class="main-courses-flex-item-news-text">Новинка</p>
+                    </div>
+                    <h2 class="main-courses-flex-item-name">Руководство по выживанию на Django. Уровень 0</h2>
+                    <p class="main-courses-flex-item-desc">Данный курс посвящен азам написания веб-приложений на фреймворке Django.</p>
+                    <div class="main-courses-flex-item-info">
+                        <div class="main-courses-flex-item-info-item">
+                            <img class="main-courses-flex-item-info-image" src="{% static 'img/UX/time_icon.svg' %}" alt="Time">
+                            <p class="main-courses-flex-item-info-text">18 часов</p>
+                        </div>
+                        <div class="main-courses-flex-item-info-item">
+                            <img class="main-courses-flex-item-info-image" src="{% static 'img/UX/students_icon.png' %}" alt="Amount students">
+                            <p class="main-courses-flex-item-info-text">124 студента</p>
+                        </div>
+                    </div>
+                    <div class="main-courses-flex-item-button-block">
+                        <a class="main-courses-flex-item-button" href="#">Начать обучение</a>
+                    </div>
+                </div>
+            
+                <div class="main-courses-flex-item">
+                    <div class="main-courses-flex-item-news">
+                        <div class="main-courses-flex-item-news-circle-hit"></div>
+                        <p class="main-courses-flex-item-news-text">Хит</p>
+                    </div>
+                    <h2 class="main-courses-flex-item-name">Руководство по выживанию на Django. Уровень 1</h2>
+                    <p class="main-courses-flex-item-desc">Данный курс посвящен азам написания веб-приложений на фреймворке Django.</p>
+                    <div class="main-courses-flex-item-info">
+                        <div class="main-courses-flex-item-info-item">
+                            <img class="main-courses-flex-item-info-image" src="img/UX-Icons/time-icon.svg" alt="Time">
+                            <p class="main-courses-flex-item-info-text">18 часов</p>
+                        </div>
+                        <div class="main-courses-flex-item-info-item">
+                            <img class="main-courses-flex-item-info-image" src="img/UX-Icons/students-icon.png" alt="Amount students">
+                            <p class="main-courses-flex-item-info-text">124 студента</p>
+                        </div>
+                    </div>
+                    <div class="main-courses-flex-item-button-block">
+                        <a class="main-courses-flex-item-button" href="#">Начать обучение</a>
+                    </div>
+                </div>
+            
+                <div class="main-courses-flex-item">
+                    <div class="main-courses-flex-item-news">
+                        <div class="main-courses-flex-item-news-circle-update"></div>
+                        <p class="main-courses-flex-item-news-text">Обновлено</p>
+                    </div>
+                    <h2 class="main-courses-flex-item-name">Руководство по выживанию на Django. Уровень 2</h2>
+                    <p class="main-courses-flex-item-desc">Данный курс посвящен азам написания веб-приложений на фреймворке Django.</p>
+                    <div class="main-courses-flex-item-info">
+                        <div class="main-courses-flex-item-info-item">
+                            <img class="main-courses-flex-item-info-image" src="img/UX-Icons/time-icon.svg" alt="Time">
+                            <p class="main-courses-flex-item-info-text">18 часов</p>
+                        </div>
+                        <div class="main-courses-flex-item-info-item">
+                            <img class="main-courses-flex-item-info-image" src="img/UX-Icons/students-icon.png" alt="Amount students">
+                            <p class="main-courses-flex-item-info-text">124 студента</p>
+                        </div>
+                    </div>
+                    <div class="main-courses-flex-item-button-block">
+                        <a class="main-courses-flex-item-button" href="#">Начать обучение</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="main-links">
+        <div class="main-links-flex">
+            <a class="main-links-flex-item" href="#">
+                <h3 class="main-links-flex-item-title">Курсы</h3>
+                <p class="main-links-flex-item-text">Выберите подходящий для себя курс и начинайте погружение в мир IT!</p>
+            </a>
+            <a class="main-links-flex-item" href="#">
+                <h3 class="main-links-flex-item-title">Тренажер</h3>
+                <p class="main-links-flex-item-text">Тренируйтесь эффективно и улучшайте свои навыки с нашим тренажером!</p>
+            </a>
+            <a class="main-links-flex-item" href="#">
+                <h3 class="main-links-flex-item-title">Блог</h3>
+                <p class="main-links-flex-item-text">Читайте наш блог, чтобы быть в курсе последних новостей и трендов IT!</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="main-reviews">
+        <h1 class="main-reviews-title">Отзывы</h1>
+        <div class="main-reviews-flex">
+            <div class="main-reviews-flex-item">
+                <div class="main-reviews-flex-item-user">
+                    <img class="main-reviews-flex-item-user-avatar" src="img/users-avatars/kaneki.jpg" alt="User avatar">
+                    <div class="main-reviews-flex-item-user-info">
+                        <p class="main-reviews-flex-item-user-info-username">Александр Авдошкин</p>
+                        <p class="main-reviews-flex-item-user-info-course">Курс - «Руководство по выживанию на Django. Уровень 1»</p>
+                    </div>
+                </div>
+                <p class="main-reviews-flex-item-reviewtext">"Если бы не коронавирус, выполнил бы всё в заход (в смысле каждый день по несколько пунктов в теме). Изучаю с нуля, ваш портал очень ориентирован на новичков. Спасибо вам большое!"</p>
+            </div>
+            <div class="main-reviews-flex-item">
+                <div class="main-reviews-flex-item-user">
+                    <img class="main-reviews-flex-item-user-avatar" src="img/users-avatars/kaneki.jpg" alt="User avatar">
+                    <div class="main-reviews-flex-item-user-info">
+                        <p class="main-reviews-flex-item-user-info-username">Александр Авдошкин</p>
+                        <p class="main-reviews-flex-item-user-info-course">Курс - «Руководство по выживанию на Django. Уровень 1»</p>
+                    </div>
+                </div>
+                <p class="main-reviews-flex-item-reviewtext">"Если бы не коронавирус, выполнил бы всё в заход (в смысле каждый день по несколько пунктов в теме). Изучаю с нуля, ваш портал очень ориентирован на новичков. Спасибо вам большое!"</p>
+            </div>
+            <div class="main-reviews-flex-item">
+                <div class="main-reviews-flex-item-user">
+                    <img class="main-reviews-flex-item-user-avatar" src="img/users-avatars/kaneki.jpg" alt="User avatar">
+                    <div class="main-reviews-flex-item-user-info">
+                        <p class="main-reviews-flex-item-user-info-username">Александр Авдошкин</p>
+                        <p class="main-reviews-flex-item-user-info-course">Курс - «Руководство по выживанию на Django. Уровень 1»</p>
+                    </div>
+                </div>
+                <p class="main-reviews-flex-item-reviewtext">"Если бы не коронавирус, выполнил бы всё в заход (в смысле каждый день по несколько пунктов в теме). Изучаю с нуля, ваш портал очень ориентирован на новичков. Спасибо вам большое!"</p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

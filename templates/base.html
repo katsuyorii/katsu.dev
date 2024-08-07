@@ -1,0 +1,77 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/training.css' %}">
+    <link rel="stylesheet" href="{% static 'css/courses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/media.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="wrapper">
+                <div class="header-flex">
+
+                    <div class="header-flex-nav">
+                        <a href="{% url 'index' %}"><img class="header-flex-nav-logo" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                        <div class="header-flex-nav-menu">
+                            <ul class="header-flex-nav-menu-list">
+                                <li><a href="#" class="header-nav-menu-list-item-link">Курсы</a></li>
+                                <li><a href="#" class="header-nav-menu-list-item-link">Тренажер</a></li>
+                                <li><a href="#" class="header-nav-menu-list-item-link">Блог</a></li>
+                                <li><a href="#" class="header-nav-menu-list-item-link">О проекте</a></li>
+                                <li><a href="#" class="header-nav-menu-list-item-link">Контакты</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="header-flex-auth">
+                        <div class="header-flex-auth-menu">
+                            <ul class="header-flex-auth-menu-list">
+                                <li><a href="#" class="header-flex-auth-menu-list-link">Вход</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="header-flex-auth-hamburger">
+                            <img class="header-flex-auth-hamburger-icon" src="{% static 'img/hamburger_icon.svg' %}" alt="Hamburger menu">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="wrapper">
+                {% block content %}{% endblock content %}
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="wrapper">
+                <div class="footer-flex">
+                    <p>© 2024, katsu.dev. При копировании материала ссылка на источник обязательна.</p>
+                    <div class="footer-flex-social">
+                        <a href="https://www.youtube.com/@katsu_dev"><img class="footer-flex-social-link-tt" src="{% static 'img/footer_icons/tiktok_icon.svg' %}" alt="TikTok"></a>
+                        <a href="https://t.me/katsu_develop"><img class="footer-flex-social-link-tg" src="{% static 'img/footer_icons/telegram_icon.svg' %}" alt="Telegram"></a>
+                        <a href="https://www.youtube.com/@katsu_dev"><img class="footer-flex-social-link" src="{% static 'img/footer_icons/youtube_icon.svg' %}" alt="YouTube"></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{% static 'js/slider.js' %}"></script>
+
+</body>
+</html>

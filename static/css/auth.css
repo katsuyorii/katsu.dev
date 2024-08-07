@@ -1,0 +1,281 @@
+/*
+    -----------------------------------------------------------------
+    CSS стили для страницы логина
+    -----------------------------------------------------------------
+*/
+
+
+.main-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.main-login-image {
+    width: 45px;
+    height: 45px;
+}
+
+.main-login-title {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 600;
+}
+
+.main-login-auth {
+    width: 500px;
+    padding: 30px 30px;
+    border: 1px solid var(--border-block);
+    border-radius: 5px;
+    background-color: var(--view-background);
+    box-shadow: -3px 5px 16px rgba(0, 0, 0, 0.11);
+}
+
+.main-login-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.main-login-auth-block-input {
+    padding: 8px 8px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+}
+
+.main-login-auth-block-label {
+    font-weight: 500;
+}
+
+.main-login-auth-block-input:focus {
+    border: 1px solid var(--input-border-focus);
+}
+
+.main-login-auth-block-button {
+    margin-top: 10px;
+    padding: 10px 0px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: var(--button-text);
+    background-color: var(--button-background);
+}
+
+
+.main-login-auth-block-button:hover {
+    background-color: var(--button-background-hover);
+    transition: 0.3s linear;
+}
+
+.main-login-auth-links {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+}
+
+.main-login-auth-links-item {
+    color: var(--link-text);
+}
+
+.main-login-auth-links-item:hover {
+    color: var(--link-text-hover);
+    transition: 0.3s linear;
+}
+
+.main-login-auth-septext {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--minor-text);
+}
+
+.main-login-auth-septext::before,
+.main-login-auth-septext::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--minor-text);
+}
+
+.main-login-auth-septext:not(:empty)::before {
+    margin-right: .25em;
+}
+  
+  .main-login-auth-septext:not(:empty)::after {
+    margin-left: .25em;
+}
+
+.profile-flex {
+    display: flex;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    gap: 30px;
+}
+
+.profile-flex-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 30%;
+    padding: 20px 20px;
+    border: 1px solid var(--border-block);
+    border-radius: 5px;
+    background-color: var(--view-background);
+    box-shadow: -3px 5px 16px rgba(0, 0, 0, 0.11);
+}
+
+.profile-flex-avatar-image {
+    border-radius: 50%;
+    width: 130px;
+}
+
+.profile-flex-avatar-username {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.profile-flex-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 70%;
+    padding: 20px 20px;
+    border: 1px solid var(--border-block);
+    border-radius: 5px;
+    background-color: var(--view-background);
+    box-shadow: -3px 5px 16px rgba(0, 0, 0, 0.11);
+}
+
+.profile-flex-content-title {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.profile-flex-content-block {
+    display: flex;
+    gap: 12px;
+}
+
+.profile-flex-content-block-change {
+    color: var(--link-text);
+}
+
+.profile-flex-content-block-change:hover {
+    transition: 0.3s linear;
+    color: var(--link-text-hover);
+}
+
+.profile-flex-content-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+    color: var(--minor-text);
+}
+
+.profile-flex-content-courses {
+    color: var(--link-text);
+    margin-top: 10px;
+}
+
+.profile-flex-content-courses:hover {
+    transition: 0.3s linear;
+    color: var(--link-text-hover);
+}
+
+.profile-flex-content-logout {
+    margin-top: 5px;
+    color: var(--link-text);
+}
+
+.profile-flex-content-logout:hover {
+    transition: 0.3s linear;
+    color: var(--link-text-hover);
+}
+
+.profile-flex-content-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-flex-content-helptext {
+    color: var(--minor-text);
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.profile-flex-content-courses {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profile-flex-content-courses-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px 20px;
+    border: 1px solid var(--border-block);
+    border-radius: 5px;
+    background-color: var(--view-background);
+    box-shadow: -3px 5px 16px rgba(0, 0, 0, 0.11);
+}
+
+.profile-flex-content-courses-item-title {
+    color: black;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.profile-flex-content-courses-item-desc {
+    color: var(--minor-text);
+}
+
+.profile-flex-content-courses-item-button-block {
+    margin-top: 15px;
+}
+
+.profile-flex-content-courses-item-button {
+    padding: 9px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: var(--button-text);
+    background-color: var(--button-background);
+}
+
+.profile-flex-content-courses-item-button:hover {
+    background-color: var(--button-background-hover);
+    transition: 0.3s linear;
+}
+
+.profile-flex-content-courses {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 20px;
+    border: 1px solid var(--border-block);
+    border-radius: 5px;
+    background-color: var(--view-background);
+    box-shadow: -3px 5px 16px rgba(0, 0, 0, 0.11);
+}
+
+.profile-flex-content-pr {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.profile-flex-content-my-courses {
+    color: var(--link-text);
+    margin-top: 10px;
+}
+
+.profile-flex-content-my-courses:hover {
+    color: var(--link-text-hover);
+    transition: 0.3s linear;
+}
