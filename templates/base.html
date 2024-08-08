@@ -27,7 +27,7 @@
                         <a href="{% url 'index' %}"><img class="header-flex-nav-logo" src="{% static 'img/logo.png' %}" alt="Logo"></a>
                         <div class="header-flex-nav-menu">
                             <ul class="header-flex-nav-menu-list">
-                                <li><a href="#" class="header-nav-menu-list-item-link">Курсы</a></li>
+                                <li><a href="{% url 'courses_list' %}" class="header-nav-menu-list-item-link">Курсы</a></li>
                                 <li><a href="#" class="header-nav-menu-list-item-link">Тренажер</a></li>
                                 <li><a href="#" class="header-nav-menu-list-item-link">Блог</a></li>
                                 <li><a href="{% url 'about' %}" class="header-nav-menu-list-item-link">О проекте</a></li>

@@ -31,6 +31,7 @@ urlpatterns = [
     # Apps urls
     
     path('', include('core.urls')),
+    path('courses/', include('courses.urls')),
 ]
 
 
