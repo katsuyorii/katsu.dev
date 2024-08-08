@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Course, Theme, Lesson, LessonMaterial, LessonQuestion
+from .models import Course, Theme, Lesson, LessonMaterial, LessonQuestion, Review
 
 
 """ Переопределение пустого поля на кастомное """
@@ -32,4 +32,10 @@ class LessonMaterialAdmin(admin.ModelAdmin):
 @admin.register(LessonQuestion)
 class LessonQuestionAdmin(admin.ModelAdmin):
     list_display = ['name', 'answer']
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['user', 'course', 'created_date', 'body']
+    date_hierarchy = 'created_date'
 

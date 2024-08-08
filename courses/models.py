@@ -3,6 +3,8 @@ from django.core.validators import FileExtensionValidator
 
 from django_ckeditor_5.fields import CKEditor5Field
 
+from users.models import User
+
 
 class LessonQuestion(models.Model):
     """ Модель вопросов к уроку """
@@ -92,3 +94,17 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+
+class Review(models.Model):
+    """ Модель отзыва на курс """
+    user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE)
+    course = models.ForeignKey(verbose_name='Курс', to=Course, on_delete=models.CASCADE)
+    body = models.TextField(verbose_name='Текст отзыва')
+    created_date = created_date = models.DateTimeField(verbose_name='Дата и время создания отзыва', auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
+    def __str__(self):
+        return f'{self.user.email} | {self.course.title} | {self.created_date}'

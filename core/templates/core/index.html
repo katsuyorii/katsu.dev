@@ -57,36 +57,26 @@
     <div class="main-reviews">
         <h1 class="main-reviews-title">Отзывы</h1>
         <div class="main-reviews-flex">
-            <div class="main-reviews-flex-item">
-                <div class="main-reviews-flex-item-user">
-                    <img class="main-reviews-flex-item-user-avatar" src="img/users-avatars/kaneki.jpg" alt="User avatar">
-                    <div class="main-reviews-flex-item-user-info">
-                        <p class="main-reviews-flex-item-user-info-username">Александр Авдошкин</p>
-                        <p class="main-reviews-flex-item-user-info-course">Курс - «Руководство по выживанию на Django. Уровень 1»</p>
+            {% for review in reviews %}
+                <div class="main-reviews-flex-item">
+                    <div class="main-reviews-flex-item-user">
+                        {% if review.user.avatar %}
+                            <img class="main-reviews-flex-item-user-avatar" src="{{ review.user.avatar.url }}" alt="User avatar">
+                        {% else %}
+                            <img class="main-reviews-flex-item-user-avatar" src="{% static 'img/default.png' %}" alt="User avatar">
+                        {% endif %}
+                        <div class="main-reviews-flex-item-user-info">
+                            {% if review.user.first_name and review.user.last_name %}
+                                <p class="main-reviews-flex-item-user-info-username">{{ review.user.last_name }}  {{ review.user.first_name }}</p>
+                            {% else %}
+                                <p class="main-reviews-flex-item-user-info-username">{{ review.user.username }}</p>
+                            {% endif %}
+                            <p class="main-reviews-flex-item-user-info-course">Курс - «{{ review.course.title }}»</p>
+                        </div>
                     </div>
+                    <p class="main-reviews-flex-item-reviewtext">"{{ review.body }}"</p>
                 </div>
-                <p class="main-reviews-flex-item-reviewtext">"Если бы не коронавирус, выполнил бы всё в заход (в смысле каждый день по несколько пунктов в теме). Изучаю с нуля, ваш портал очень ориентирован на новичков. Спасибо вам большое!"</p>
-            </div>
-            <div class="main-reviews-flex-item">
-                <div class="main-reviews-flex-item-user">
-                    <img class="main-reviews-flex-item-user-avatar" src="img/users-avatars/kaneki.jpg" alt="User avatar">
-                    <div class="main-reviews-flex-item-user-info">
-                        <p class="main-reviews-flex-item-user-info-username">Александр Авдошкин</p>
-                        <p class="main-reviews-flex-item-user-info-course">Курс - «Руководство по выживанию на Django. Уровень 1»</p>
-                    </div>
-                </div>
-                <p class="main-reviews-flex-item-reviewtext">"Если бы не коронавирус, выполнил бы всё в заход (в смысле каждый день по несколько пунктов в теме). Изучаю с нуля, ваш портал очень ориентирован на новичков. Спасибо вам большое!"</p>
-            </div>
-            <div class="main-reviews-flex-item">
-                <div class="main-reviews-flex-item-user">
-                    <img class="main-reviews-flex-item-user-avatar" src="img/users-avatars/kaneki.jpg" alt="User avatar">
-                    <div class="main-reviews-flex-item-user-info">
-                        <p class="main-reviews-flex-item-user-info-username">Александр Авдошкин</p>
-                        <p class="main-reviews-flex-item-user-info-course">Курс - «Руководство по выживанию на Django. Уровень 1»</p>
-                    </div>
-                </div>
-                <p class="main-reviews-flex-item-reviewtext">"Если бы не коронавирус, выполнил бы всё в заход (в смысле каждый день по несколько пунктов в теме). Изучаю с нуля, ваш портал очень ориентирован на новичков. Спасибо вам большое!"</p>
-            </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}
