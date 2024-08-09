@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load students_count_declination %}
+{% load hours_count_declination %}
 {% load static %}
 
 {% block content %}
@@ -22,11 +24,11 @@
                     <div class="main-courses-flex-item-info">
                         <div class="main-courses-flex-item-info-item">
                             <img class="main-courses-flex-item-info-image" src="{% static 'img/UX/time_icon.svg' %}" alt="Time">
-                            <p class="main-courses-flex-item-info-text">{{ course.amount_hours }} часов</p>
+                            <p class="main-courses-flex-item-info-text">{{ course.amount_hours }} {{ course.amount_hours|hours_count_declination }}</p>
                         </div>
                         <div class="main-courses-flex-item-info-item">
                             <img class="main-courses-flex-item-info-image" src="{% static 'img/UX/students_icon.png' %}" alt="Amount students">
-                            <p class="main-courses-flex-item-info-text">{{ course.amount_students }} студента</p>
+                            <p class="main-courses-flex-item-info-text">{{ course.amount_students }} {{ course.amount_students|students_count_declination }}</p>
                         </div>
                     </div>
                     <div class="main-courses-flex-item-button-block">
@@ -39,7 +41,7 @@
 
     <div class="main-links">
         <div class="main-links-flex">
-            <a class="main-links-flex-item" href="#">
+            <a class="main-links-flex-item" href="{% url 'courses_list' %}">
                 <h3 class="main-links-flex-item-title">Курсы</h3>
                 <p class="main-links-flex-item-text">Выберите подходящий для себя курс и начинайте погружение в мир IT!</p>
             </a>
