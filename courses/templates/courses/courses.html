@@ -3,5 +3,29 @@
 
 
 {% block content %}
-
+    <div class="courses-flex">
+        <h1 class="courses-flex-title">Курсы</h1>
+        <div class="courses-flex-grid">
+            {% for course in courses %}
+                <div class="courses-flex-grid-item">
+                    <img class="courses-flex-grid-item-logo" src="{{ course.poster.url }}" alt="Course logo">
+                    <h2 class="main-courses-flex-item-name">{{ course.title }}</h2>
+                        <p class="main-courses-flex-item-desc">{{ course.short_description }}</p>
+                        <div class="main-courses-flex-item-info">
+                            <div class="main-courses-flex-item-info-item">
+                                <img class="main-courses-flex-item-info-image" src="{% static 'img/UX/time_icon.svg' %}" alt="Time">
+                                <p class="main-courses-flex-item-info-text">{{ course.amount_hours }} часов</p>
+                            </div>
+                            <div class="main-courses-flex-item-info-item">
+                                <img class="main-courses-flex-item-info-image" src="{% static 'img/UX/students_icon.png' %}" alt="Amount students">
+                                <p class="main-courses-flex-item-info-text">{{ course.amount_students }} студента</p>
+                            </div>
+                        </div>
+                        <div class="main-courses-flex-item-button-block">
+                            <a class="main-courses-flex-item-button" href="#">Начать обучение</a>
+                        </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}
