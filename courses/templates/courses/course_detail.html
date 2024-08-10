@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load students_count_declination %}
+{% load hours_count_declination %}
+{% load static %}
+
+{% block content %}
+    <div class="course-column">
+        <div class="course-flex">
+            <div class="course-flex-row">
+                <div class="course-flex-row-left">
+                    {% if course.price %}
+                        <p class="course-flex-row-left-price">Платный курс</p>
+                    {% else %}
+                        <p class="course-flex-row-left-price">Бесплатный курс</p>
+                    {% endif %}
+                    <h1 class="course-flex-row-left-title">{{ course.title }}</h1>
+                    <p class="course-flex-row-left-desc">{{ course.full_description }}</p>
+                    <div class="main-courses-flex-item-info">
+                        <div class="main-courses-flex-item-info-item">
+                            <img class="main-courses-flex-item-info-image" src="{% static 'img/UX/time_icon.svg' %}" alt="Time">
+                            <p class="course-flex-row-left-text">{{ course.amount_hours }} {{ course.amount_hours|hours_count_declination }}</p>
+                        </div>
+                        <div class="main-courses-flex-item-info-item">
+                            <img class="main-courses-flex-item-info-image" src="{% static 'img/UX/students_icon.png' %}" alt="Amount students">
+                            <p class="course-flex-row-left-text">{{ course.amount_students }} {{ course.amount_students|students_count_declination }}</p>
+                        </div>
+                    </div>
+                    <div class="course-flex-row-left-block">
+                        <a href="#" class="course-flex-row-left-start">Начать обучение</a>
+                        <a href="#" class="course-flex-row-left-reg">Зарегистрироваться</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% for theme in course.themes.all %}
+            <div class="course-flex-chapter">
+                <h2 class="course-flex-chapter-left-title">{{ theme.name }}</h2>
+                <div class="course-flex-chapter-row">
+                    <div class="course-flex-chapter-left">
+                        <div class="course-flex-chapter-left-lessons">
+                            <ul class="course-flex-chapter-left-lessons-list">
+                                {% for lesson in theme.lessons.all %}
+                                    <li><a class="course-flex-chapter-left-lessons-list-item" href="#">{{ lesson.name }}</a></li>
+                                    <div class="sep"></div>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="course-flex-chapter-right">
+                        <p class="course-flex-chapter-right-desc">{{ theme.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="course-flex-info">
+            <div class="course-flex-info-left">
+                <p class="course-flex-info-left-title">Готовы начать прямо сейчас?</p>
+                <p class="course-flex-info-left-text">Первый урок вас ждет!</p>
+            </div>
+            <div class="course-flex-info-right">
+                <a class="course-flex-info-right-button" href="#">Старт</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

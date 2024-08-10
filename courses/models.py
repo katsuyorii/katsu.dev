@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
+from django.urls import reverse
 
 from django_ckeditor_5.fields import CKEditor5Field
 
@@ -93,6 +94,10 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse("course_detail", kwargs={"course_slug": self.slug})
+    
 
 
 class Review(models.Model):
