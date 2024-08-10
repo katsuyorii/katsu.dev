@@ -10,7 +10,7 @@
                 <div class="blog-flex-content-item">
                     <div class="blog-flex-content-item-categories">
                         {% for tag in post.tags.all %}
-                            <a class="blog-flex-content-item-categories-item" href="#">{{ tag.name }}</a>
+                            <a class="blog-flex-content-item-categories-item" href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
                         {% endfor %}
                     </div>
                     <a class="blog-flex-content-item-title" href="#">{{ post.title }}</a>
@@ -49,7 +49,7 @@
             <div class="blog-flex-nav-tags">
                 <div class="blog-flex-nav-tags-wrapper">
                     {% for tag in tags %}
-                        <a href="#" class="blog-flex-nav-tags-wrapper-item">{{ tag.name }}</a>
+                        <a href="{{ tag.get_absolute_url }}" class="blog-flex-nav-tags-wrapper-item">{{ tag.name }}</a>
                     {% endfor %}
                 </div>
             </div>

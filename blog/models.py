@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from django_ckeditor_5.fields import CKEditor5Field
 
 from users.models import User
@@ -16,7 +18,10 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
-
+    
+    def get_absolute_url(self):
+        return reverse("tag_list", kwargs={"tag_slug": self.slug})
+    
 
 class Post(models.Model):
     """ Модель поста """
