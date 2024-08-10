@@ -7,6 +7,7 @@ from django.urls import reverse
 from django_ckeditor_5.fields import CKEditor5Field
 
 from users.models import User
+from .validators import ban_words_validator
 
 
 class LessonQuestion(models.Model):
@@ -109,7 +110,7 @@ class Review(models.Model):
     """ Модель отзыва на курс """
     user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE)
     course = models.ForeignKey(verbose_name='Курс', to=Course, on_delete=models.CASCADE)
-    body = models.TextField(verbose_name='Текст отзыва')
+    body = models.TextField(verbose_name='Текст отзыва', validators=[ban_words_validator])
     created_date = created_date = models.DateTimeField(verbose_name='Дата и время создания отзыва', auto_now_add=True)
 
     class Meta:

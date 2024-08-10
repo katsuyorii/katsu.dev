@@ -41,3 +41,5 @@ doc-dev
 
 *.log
 .log
+
+*.json
