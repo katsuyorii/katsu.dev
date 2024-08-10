@@ -13,7 +13,7 @@
                             <a class="blog-flex-content-item-categories-item" href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
                         {% endfor %}
                     </div>
-                    <a class="blog-flex-content-item-title" href="#">{{ post.title }}</a>
+                    <a class="blog-flex-content-item-title" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                     <div class="blog-flex-content-item-block">
                         <p class="blog-flex-content-item-block-date">{{ post.created_date }}</p>
                         <p>•</p>
@@ -34,7 +34,7 @@
                             <p class="blog-flex-content-item-reactions-item-amount">0</p>
                         </div>
                     </div>
-                    <div class="blog-flex-content-item-bb"><a href="#" class="blog-flex-content-item-button">Читать статью</a></div>
+                    <div class="blog-flex-content-item-bb"><a href="{{ post.get_absolute_url }}" class="blog-flex-content-item-button">Читать статью</a></div>
                 </div>
             {% endfor %}
 
