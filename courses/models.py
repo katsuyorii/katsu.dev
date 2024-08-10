@@ -7,7 +7,7 @@ from django.urls import reverse
 from django_ckeditor_5.fields import CKEditor5Field
 
 from users.models import User
-from .validators import ban_words_validator
+from handlers.validators import ban_words_validator
 
 
 class LessonQuestion(models.Model):
