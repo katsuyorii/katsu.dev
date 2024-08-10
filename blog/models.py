@@ -10,7 +10,6 @@ class Tag(models.Model):
     name = models.CharField(verbose_name='Наименование', max_length=128, unique=True, db_index=True)
     slug = models.SlugField(verbose_name='Слаг', max_length=128, unique=True, db_index=True)
 
-
     class Meta:
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
