@@ -36,7 +36,6 @@ class Post(models.Model):
         return self.title
 
 
-
 class Like(models.Model):
     """ Модель лайка для постов """
     user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE)

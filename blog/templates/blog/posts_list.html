@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load time_count_declination %}
 {% load static %}
 
 {% block content %}
@@ -16,7 +17,7 @@
                     <div class="blog-flex-content-item-block">
                         <p class="blog-flex-content-item-block-date">{{ post.created_date }}</p>
                         <p>•</p>
-                        <p class="blog-flex-content-item-block-time">{{ post.time_reading }} минут чтения</p>
+                        <p class="blog-flex-content-item-block-time">{{ post.time_reading }} {{ post.time_reading|time_count_declination }} чтения</p>
                     </div>
                     <p class="blog-flex-content-item-desc">{{ post.short_description }}</p>
                     <div class="blog-flex-content-item-reactions">
