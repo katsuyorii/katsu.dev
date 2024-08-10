@@ -8,9 +8,9 @@
                 <div class="blog-flex-content-item">
                     <div class="blog-flex-content-item-categories">
                         {% for category in question.categories.all %}
-                            <a class="blog-flex-content-item-categories-item" href="#">{{ category.name }}</a>
+                            <a class="blog-flex-content-item-categories-item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
                         {% endfor %}
-                        <a class="blog-flex-content-item-categories-grade" href="#">{{ question.grade.name }}</a>
+                        <a class="blog-flex-content-item-categories-grade" href="{{ question.grade.get_absolute_url }}">{{ question.grade.name }}</a>
                     </div>
                     <h1 class="blog-flex-content-item-title-trainee" href="#">{{ question.title }}</h1>
                     <details>
@@ -30,14 +30,14 @@
             <div class="blog-flex-nav-tags">
                 <div class="blog-flex-nav-tags-wrapper">
                     {% for grade in grades %}
-                        <a href="#" class="blog-flex-nav-tags-wrapper-item">{{ grade.name }}</a>
+                        <a href="{{ grade.get_absolute_url }}" class="blog-flex-nav-tags-wrapper-item">{{ grade.name }}</a>
                     {% endfor %}
                 </div>
             </div>
             <div class="blog-flex-nav-tags">
                 <div class="blog-flex-nav-tags-wrapper">
                     {% for category in categories %}
-                        <a href="#" class="blog-flex-nav-tags-wrapper-item">{{ category.name }}</a>
+                        <a href="{{ category.get_absolute_url }}" class="blog-flex-nav-tags-wrapper-item">{{ category.name }}</a>
                     {% endfor %}
                 </div>
             </div>
