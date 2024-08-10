@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="lesson-flex">
+        <div class="lesson-flex-nav">
+            {% for theme in selected_course.themes.all %}
+                <div class="lesson-flex-nav-item">
+                    <h1 class="lesson-flex-nav-title">{{ theme.name }}</h1>
+                    <ul class="lesson-flex-nav-list">
+                        {% for lesson in theme.lessons.all %}
+                        <li><a href="{% url 'lesson_detail' course_slug=selected_course.slug lesson_slug=lesson.slug %}" class="lesson-flex-nav-list-item">{{ lesson.name }}</a></li>
+                        <div class="sep"></div>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="lesson-flex-wrapper">
+            <div class="lesson-flex-item">
+                <h2 class="lesson-flex-item-title">{{ lesson.name }}</h2>
+                <div class="sep"></div>
+                <p class="lesson-flex-item-text">{{ lesson.body|safe }}</p>
+            </div>
+
+            <div class="lesson-flex-wrapper-questions">
+                <h3 class="lesson-flex-wrapper-questions-title">Вопросы к уроку</h3>
+                <div class="sep"></div>
+                {% for question in lesson.questions.all %}
+                    <div class="lesson-flex-wrapper-questions-item">
+                        <p class="lesson-flex-wrapper-questions-item-title">{{ question.name }}</p>
+                        <details>
+                            <summary class="lesson-flex-wrapper-questions-item-legend">Показать ответ</summary>
+                            <p class="lesson-flex-wrapper-questions-item-answer">{{ question.answer }}</p>
+                        </details>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="lesson-flex-wrapper-questions">
+                <h3 class="lesson-flex-wrapper-questions-title">Материалы к уроку</h3>
+                <div class="sep"></div>
+                {% for material in lesson.materials.all %}
+                    <div class="lesson-flex-wrapper-questions-file">
+                        {% if material.get_extension_display == '.zip' %}
+                            <img class="lesson-flex-wrapper-questions-file-icon" src="{% static 'img/files_extensions_icons/archive_icon.png' %}" alt="ZIP file">
+                        {% elif material.get_extension_display == '.jpg' %}
+                            <img class="lesson-flex-wrapper-questions-file-icon" src="{% static 'img/files_extensions_icons/jpg_icon.png' %}" alt="JPG file">
+                        {% else %}
+                            <img class="lesson-flex-wrapper-questions-file-icon" src="{% static 'img/files_extensions_icons/pdf_icon.png' %}" alt="PDF file">
+                        {% endif %}
+                        <a class="lesson-flex-wrapper-questions-file-link" href="{{ material.file.url }}" download rel="noopener">{{ material.only_filename }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

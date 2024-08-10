@@ -41,7 +41,7 @@
                         <div class="course-flex-chapter-left-lessons">
                             <ul class="course-flex-chapter-left-lessons-list">
                                 {% for lesson in theme.lessons.all %}
-                                    <li><a class="course-flex-chapter-left-lessons-list-item" href="#">{{ lesson.name }}</a></li>
+                                    <li><a class="course-flex-chapter-left-lessons-list-item" href="{% url 'lesson_detail' course_slug=course.slug lesson_slug=lesson.slug %}">{{ lesson.name }}</a></li>
                                     <div class="sep"></div>
                                 {% endfor %}
                             </ul>

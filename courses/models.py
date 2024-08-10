@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.urls import reverse
@@ -36,6 +38,10 @@ class LessonMaterial(models.Model):
 
     def __str__(self):
         return self.file.name
+    
+    def only_filename(self):
+        """ Метод возвращающий только наименование файла и его расширение, без полного пути к папке media """
+        return os.path.basename(self.file.name)
 
 
 class Lesson(models.Model):
@@ -52,7 +58,6 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 class Theme(models.Model):
