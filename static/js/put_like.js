@@ -12,7 +12,6 @@ $(document).ready(function() {
                 $('.blog-flex-content-item-reactions-item-amount').each(function() {
                     var item = $(this);
                     if (item.data('pk') == post_pk) {
-                        item.css('color', response.color_text);
                         item.text(response.count_likes);
                     }
                 });

@@ -32,7 +32,7 @@ class PostsTagListView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        queryset = Post.objects.filter(tags__slug=self.kwargs['tag_slug']).order_by('-created_date').prefetch_related('tags')
+        queryset = Post.objects.filter(tags__slug=self.kwargs['tag_slug']).annotate(like_count=Count('likes')).order_by('-created_date').prefetch_related('tags')
 
         return queryset
 
@@ -73,12 +73,10 @@ class PutLikeView(View):
         if not is_exists:
             like = Like(post=selected_post, user=request.user)
             like.save()
-            color_text = 'red'
             count_likes = selected_post.get_count_likes()
         else:
             like = Like.objects.filter(post=selected_post, user=request.user)
             like.delete()
-            color_text = '#767676'
             count_likes = selected_post.get_count_likes()
 
-        return JsonResponse({'color_text': color_text, 'count_likes': count_likes})
+        return JsonResponse({'count_likes': count_likes})
