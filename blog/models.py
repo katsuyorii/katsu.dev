@@ -43,11 +43,14 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("post_detail", kwargs={"post_slug": self.slug})
     
+    def get_count_likes(self):
+        return self.likes.count()
+    
 
 class Like(models.Model):
     """ Модель лайка для постов """
     user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE)
-    post = models.ForeignKey(verbose_name='Пост', to=Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(verbose_name='Пост', to=Post, on_delete=models.CASCADE, related_name='likes')
 
     class Meta:
         verbose_name = 'Лайк'

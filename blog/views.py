@@ -1,6 +1,9 @@
-from django.views.generic import ListView, DetailView
+from django.http import JsonResponse
+from django.views.generic import ListView, DetailView, View
+from django.shortcuts import get_object_or_404
+from django.db.models import Count
 
-from .models import Post, Tag, Comment
+from .models import Post, Tag, Comment, Like
 
 
 class PostsListView(ListView):
@@ -10,7 +13,7 @@ class PostsListView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        queryset = Post.objects.all().order_by('-created_date').prefetch_related('tags')
+        queryset = Post.objects.all().annotate(like_count=Count('likes')).order_by('-created_date').prefetch_related('tags')
 
         return queryset
 
@@ -59,3 +62,23 @@ class PostDetailView(DetailView):
         context['comments'] = Comment.objects.filter(post__slug=self.kwargs['post_slug']).order_by('-created_date').select_related('user')
 
         return context
+    
+
+class PutLikeView(View):
+    """ Представления для кнопки - «Лайк» (огонек) """
+    def get(self, request, *args, **kwargs):
+        selected_post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
+        is_exists = Like.objects.filter(post=selected_post, user=request.user).exists()
+
+        if not is_exists:
+            like = Like(post=selected_post, user=request.user)
+            like.save()
+            color_text = 'red'
+            count_likes = selected_post.get_count_likes()
+        else:
+            like = Like.objects.filter(post=selected_post, user=request.user)
+            like.delete()
+            color_text = '#767676'
+            count_likes = selected_post.get_count_likes()
+
+        return JsonResponse({'color_text': color_text, 'count_likes': count_likes})

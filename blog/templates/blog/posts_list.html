@@ -22,15 +22,15 @@
                     <p class="blog-flex-content-item-desc">{{ post.short_description }}</p>
                     <div class="blog-flex-content-item-reactions">
                         <div class="blog-flex-content-item-reactions-item">
-                            <img class="blog-flex-content-item-reactions-item-image" src="{% static 'img/UX/like_icon.png' %}" alt="Like">
+                            <img data-pk="{{ post.pk }}" class="blog-flex-content-item-reactions-item-image" src="{% static 'img/UX/like_icon.png' %}" alt="Like">
+                            <p data-pk="{{ post.pk }}" class="blog-flex-content-item-reactions-item-amount">{{ post.like_count }}</p>
+                        </div>
+                        <div class="blog-flex-content-item-reactions-item">
+                            <img id='dislike' class="blog-flex-content-item-reactions-item-image-dis" src="{% static 'img/UX/dislike_icon.png' %}" alt="Dislike">
                             <p class="blog-flex-content-item-reactions-item-amount">0</p>
                         </div>
                         <div class="blog-flex-content-item-reactions-item">
-                            <img class="blog-flex-content-item-reactions-item-image-dis" src="{% static 'img/UX/dislike_icon.png' %}" alt="Dislike">
-                            <p class="blog-flex-content-item-reactions-item-amount">0</p>
-                        </div>
-                        <div class="blog-flex-content-item-reactions-item">
-                            <img class="blog-flex-content-item-reactions-item-image" src="{% static 'img/UX/water_icon.png' %}" alt="Water">
+                            <img id='water' class="blog-flex-content-item-reactions-item-image" src="{% static 'img/UX/water_icon.png' %}" alt="Water">
                             <p class="blog-flex-content-item-reactions-item-amount">0</p>
                         </div>
                     </div>
