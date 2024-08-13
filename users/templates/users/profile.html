@@ -16,7 +16,7 @@
             <h1 class="profile-flex-content-title">Мой профиль</h1>
             <div class="profile-flex-content-block">
                 <a class="profile-flex-content-block-change" href="#">Редактировать</a>
-                <a class="profile-flex-content-block-change" href="#">Сменить пароль</a>
+                <a class="profile-flex-content-block-change" href="{% url 'password_change' %}">Сменить пароль</a>
             </div>
             <div class="profile-flex-content-info">
                 {% if user.first_name and not user.last_name %}
