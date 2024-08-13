@@ -5,6 +5,7 @@
 
 {% block content %}
     <div class="post-flex">
+        {% csrf_token %}
         <div class="post-flex-content">
             <div class="blog-flex-content-item-categories">
                 {% for tag in post.tags.all %}
@@ -29,8 +30,8 @@
                         <p data-pk="{{ post.pk }}" class="blog-flex-content-item-reactions-item-amount-dis"> {{ post.get_count_dislike }} </p>
                     </div>
                     <div class="blog-flex-content-item-reactions-item">
-                        <img data-pk="{{ post.pk }}" class="blog-flex-content-item-reactions-item-image-like" src="{% static 'img/UX/water_icon.png' %}" alt="Water">
-                        <p data-pk="{{ post.pk }}" class="blog-flex-content-item-reactions-item-amount-like">0</p>
+                        <img data-pk="{{ post.pk }}" class="blog-flex-content-item-reactions-item-image-water" src="{% static 'img/UX/water_icon.png' %}" alt="Water">
+                        <p data-pk="{{ post.pk }}" class="blog-flex-content-item-reactions-item-amount-water">{{ post.get_count_water }}</p>
                     </div>
             </div>
         </div>

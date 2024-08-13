@@ -7,6 +7,7 @@
         <div class="blog-flex-content">
             
             {% for post in posts %}
+            {% csrf_token %}
                 <div class="blog-flex-content-item">
                     <div class="blog-flex-content-item-categories">
                         {% for tag in post.tags.all %}
@@ -31,7 +32,7 @@
                         </div>
                         <div class="blog-flex-content-item-reactions-item">
                             <img data-pk="{{ post.pk }}" id='water' class="blog-flex-content-item-reactions-item-image-water" src="{% static 'img/UX/water_icon.png' %}" alt="Water">
-                            <p data-pk="{{ post.pk }}" class="blog-flex-content-item-reactions-item-amount-water">0</p>
+                            <p data-pk="{{ post.pk }}" class="blog-flex-content-item-reactions-item-amount-water">{{ post.waters_count }}</p>
                         </div>
                     </div>
                     <div class="blog-flex-content-item-bb"><a href="{{ post.get_absolute_url }}" class="blog-flex-content-item-button">Читать статью</a></div>

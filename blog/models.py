@@ -51,6 +51,10 @@ class Post(models.Model):
         """ Метод получения количества дизлайков у выбранного поста """
         return self.dislikes.count()
     
+    def get_count_water(self):
+        """ Метод получения количества "воды" у выбранного поста """
+        return self.waters.count()
+    
 
 class Like(models.Model):
     """ Модель лайка для постов """
@@ -81,7 +85,7 @@ class Dislike(models.Model):
 class Water(models.Model):
     """ Модель "воды" для постов """
     user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE)
-    post = models.ForeignKey(verbose_name='Пост', to=Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(verbose_name='Пост', to=Post, on_delete=models.CASCADE, related_name='waters')
 
     class Meta:
         verbose_name = 'Вода'

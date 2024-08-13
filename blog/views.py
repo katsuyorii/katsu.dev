@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, View
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
 
-from .models import Post, Tag, Comment, Like, Dislike
+from .models import Post, Tag, Comment, Like, Dislike, Water
 
 
 class PostsListView(ListView):
@@ -13,7 +13,7 @@ class PostsListView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        queryset = Post.objects.all().annotate(like_count=Count('likes')).annotate(dislike_count=Count('dislikes')).order_by('-created_date').prefetch_related('tags')
+        queryset = Post.objects.all().annotate(like_count=Count('likes')).annotate(dislike_count=Count('dislikes')).annotate(waters_count=Count('waters')).order_by('-created_date').prefetch_related('tags')
 
         return queryset
 
@@ -32,7 +32,7 @@ class PostsTagListView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        queryset = Post.objects.filter(tags__slug=self.kwargs['tag_slug']).annotate(like_count=Count('likes')).annotate(dislike_count=Count('dislikes')).order_by('-created_date').prefetch_related('tags')
+        queryset = Post.objects.filter(tags__slug=self.kwargs['tag_slug']).annotate(like_count=Count('likes')).annotate(dislike_count=Count('dislikes')).annotate(waters_count=Count('waters')).order_by('-created_date').prefetch_related('tags')
 
         return queryset
 
@@ -66,7 +66,7 @@ class PostDetailView(DetailView):
 
 class PutLikeView(View):
     """ Представления для кнопки - «Лайк» (огонек) """
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         selected_post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
         is_exists = Like.objects.filter(post=selected_post, user=request.user).exists()
 
@@ -84,7 +84,7 @@ class PutLikeView(View):
 
 class PutDislikeView(View):
     """ Представления для кнопки - «Дизлайк» (какашка) """
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         selected_post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
         is_exists = Dislike.objects.filter(post=selected_post, user=request.user).exists()
 
@@ -98,3 +98,21 @@ class PutDislikeView(View):
             count_dislikes = selected_post.get_count_dislike()
 
         return JsonResponse({'count_dislikes': count_dislikes})
+
+
+class PutWaterView(View):
+    """ Представления для кнопки - «Вода» (капля) """
+    def post(self, request, *args, **kwargs):
+        selected_post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
+        is_exists = Water.objects.filter(post=selected_post, user=request.user).exists()
+
+        if not is_exists:
+            water = Water(post=selected_post, user=request.user)
+            water.save()
+            count_water = selected_post.get_count_water()
+        else:
+            water = Water.objects.filter(post=selected_post, user=request.user)
+            water.delete()
+            count_water = selected_post.get_count_water()
+
+        return JsonResponse({'count_water': count_water})

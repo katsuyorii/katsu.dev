@@ -2,11 +2,14 @@ $(document).ready(function() {
     $('.blog-flex-content-item-reactions-item-image-dis').click(function(event) {
         
         var post_pk = $(this).data('pk');
-        var url = '/blog/put_dislike/' + post_pk;
+        var url = '/blog/put_dislike/' + post_pk + '/';
 
         $.ajax({
             url: url,
-            type: 'GET',
+            type: 'POST',
+            data: {
+                csrfmiddlewaretoken: document.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
 
             success: function(response) {
                 $('.blog-flex-content-item-reactions-item-amount-dis').each(function() {
