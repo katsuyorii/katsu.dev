@@ -44,7 +44,12 @@ class Post(models.Model):
         return reverse("post_detail", kwargs={"post_slug": self.slug})
     
     def get_count_likes(self):
+        """ Метод получения количества лайков у выбранного поста """
         return self.likes.count()
+    
+    def get_count_dislike(self):
+        """ Метод получения количества дизлайков у выбранного поста """
+        return self.dislikes.count()
     
 
 class Like(models.Model):
@@ -63,7 +68,7 @@ class Like(models.Model):
 class Dislike(models.Model):
     """ Модель дизлайка для постов """
     user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE)
-    post = models.ForeignKey(verbose_name='Пост', to=Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(verbose_name='Пост', to=Post, on_delete=models.CASCADE, related_name='dislikes')
 
     class Meta:
         verbose_name = 'Дизлайк'

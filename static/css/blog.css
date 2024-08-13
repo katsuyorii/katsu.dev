@@ -128,7 +128,19 @@
     gap: 5px;
 }
 
-.blog-flex-content-item-reactions-item-image {
+.blog-flex-content-item-reactions-item-image-dis {
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+}
+
+.blog-flex-content-item-reactions-item-image-like {
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+}
+
+.blog-flex-content-item-reactions-item-image-water {
     cursor: pointer;
     width: 28px;
     height: 28px;
@@ -141,7 +153,13 @@
     margin-right: 3px;
 }
 
-.blog-flex-content-item-reactions-item-amount {
+.blog-flex-content-item-reactions-item-amount-like {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--minor-text);
+}
+
+.blog-flex-content-item-reactions-item-amount-water {
     font-size: 17px;
     font-weight: 500;
     color: var(--minor-text);
