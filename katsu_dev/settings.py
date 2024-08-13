@@ -174,3 +174,10 @@ CKEDITOR_5_CONFIGS = {
         }
     },
 }
+
+
+# Custom backend auth
+
+AUTHENTICATION_BACKENDS = [
+    'authorization.backend.EmailAuthBackend',
+]
