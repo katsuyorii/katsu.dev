@@ -1,9 +1,12 @@
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, View
+from django.views.generic.edit import FormMixin
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
 
 from .models import Post, Tag, Comment, Like, Dislike, Water
+from .forms import CommentForm
 
 
 class PostsListView(ListView):
@@ -44,12 +47,13 @@ class PostsTagListView(ListView):
         return context
     
 
-class PostDetailView(DetailView):
-    """ Представлени для страницы отдельного поста """
+class PostDetailView(DetailView, FormMixin):
+    """ Представлени для страницы отдельного поста и добавления комментария """
     model = Post
     template_name = 'blog/post_detail.html'
     context_object_name = 'post'
     slug_url_kwarg = 'post_slug'
+    form_class = CommentForm
 
     def get_queryset(self):
         queryset = Post.objects.filter(slug=self.kwargs['post_slug']).prefetch_related('tags')
@@ -62,6 +66,28 @@ class PostDetailView(DetailView):
         context['comments'] = Comment.objects.filter(post__slug=self.kwargs['post_slug']).order_by('-created_date').select_related('user')
 
         return context
+    
+    def get_success_url(self):
+        return reverse_lazy('post_detail', kwargs = {'post_slug': self.kwargs['post_slug']})
+    
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = get_object_or_404(Post, slug=self.kwargs['post_slug'])
+            comment.user = self.request.user
+            comment.save()
+
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+        
+    def form_valid(self, form):
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        return HttpResponseRedirect(self.get_success_url())
     
 
 class PutLikeView(View):

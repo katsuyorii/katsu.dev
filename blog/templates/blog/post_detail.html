@@ -37,11 +37,15 @@
         </div>
         <div class="post-flex-comments">
             <p class="post-flex-comments-title">Комменатрии</p>
+
+            <p class="error-form-text">{{ form.errors.body }}</p>
+        
             {% if not user.is_authenticated %}
                 <p class="post-flex-comments-auth">Чтобы оставлять комментарии, <a class="post-flex-comments-auth-link" href="#">авторизируйтесь.</a></p>
             {% else %}
-                <form method="POST">
-                    <textarea class="post-flex-comments-input" placeholder="Напишите здесь свой комментарий..." rows="4" name="" id=""></textarea>
+                <form method="POST" method="POST">
+                    {% csrf_token %}
+                    {{ form.body }}
                     <div class="post-flex-comments-block">
                         <button type="submit" class="post-flex-comments-button">Отправить</button>
                     </div>
