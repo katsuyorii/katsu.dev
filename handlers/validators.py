@@ -9,4 +9,4 @@ def ban_words_validator(value):
     
     for word in banned_words:
         if word in value.lower():
-            raise ValidationError('"В вашем тексте есть неприемлемые слово или слова. Пожалуйста, исправьте их."')
+            raise ValidationError('В вашем тексте есть неприемлемые слово или слова. Пожалуйста, исправьте их.')
