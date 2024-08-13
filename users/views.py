@@ -1,4 +1,7 @@
-from django.views.generic import TemplateView
+from django.views.generic import View, TemplateView
+from django.contrib.auth import logout
+from django.urls import reverse_lazy
+from django.shortcuts import redirect
 
 
 class ProfileView(TemplateView):
@@ -10,3 +13,10 @@ class ProfileView(TemplateView):
             context['title'] = 'Профиль'
 
             return context
+
+
+class LogoutView(View):
+    """ Представление для функции выхода из аккаунта """
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect(reverse_lazy('index'))

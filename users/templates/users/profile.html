@@ -31,7 +31,7 @@
                 <p class="profile-flex-content-info-name">Email: {{ user.email }}</p>
             </div>
             <a href="#" class="profile-flex-content-my-courses">Мои курсы</a>
-            <a href="#" class="profile-flex-content-logout">Выход</a>
+            <a href="{% url 'logout' %}" class="profile-flex-content-logout">Выход</a>
         </div>
     </div>
 {% endblock content %}
