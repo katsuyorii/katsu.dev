@@ -39,7 +39,11 @@
                     <div class="header-flex-auth">
                         <div class="header-flex-auth-menu">
                             <ul class="header-flex-auth-menu-list">
-                                <li><a href="#" class="header-flex-auth-menu-list-link">Вход</a></li>
+                                {% if not user.is_authenticated %}
+                                    <li><a href="{% url 'login' %}" class="header-flex-auth-menu-list-link">Вход</a></li>
+                                {% else %}
+                                    <li><a href="#" class="header-nav-menu-list-item-link">{{ user.username }}</a></li>
+                                {% endif %}
                             </ul>
                         </div>
 

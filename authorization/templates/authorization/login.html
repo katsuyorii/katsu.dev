@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+    <div class="main-login">
+        <img class="main-login-image" src="{% static 'img/UX/login.png' %}" alt="Login Icon">
+        <h1 class="main-login-title">Вход</h1>
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <p class="error-form-text">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <div class="main-login-auth">
+            <form class="main-login-auth-form" method="POST">
+                {% csrf_token %}
+                <label class="main-login-auth-block-label" for="{{ form.email.id_for_label }}">Адрес эл. почты</label>
+                {{ form.email }}
+                <label class="main-login-auth-block-label" for="{{ form.password.id_for_label }}">Пароль</label>
+                {{ form.password }}
+                <button class="main-login-auth-block-button" type="submit">Войти</button>
+            </form>
+            <div class="main-login-auth-links">
+                <a class="main-login-auth-links-item" href="#">Забыли пароль?</a>
+                <a class="main-login-auth-links-item" href="#">У вас нет аккаунта?</a>
+            </div>
+            <div class="main-login-auth-septext">С помощью социальных сетей</div>
+        </div>
+    </div>
+{% endblock content %}
