@@ -35,6 +35,7 @@ urlpatterns = [
     path('training/', include('training.urls')),
     path('blog/', include('blog.urls')),
     path('auth/', include('authorization.urls')),
+    path('accounts/', include('users.urls')),
 ]
 
 

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+    <div class="profile-flex">
+        <div class="profile-flex-avatar">
+            {% if user.avatar %}
+                <img class="profile-flex-avatar-image" src="{{ user.avatar.url }}" alt="User avatar">
+            {% else %}
+                <img class="profile-flex-avatar-image" src="{% static 'img/default.png' %}" alt="User avatar">
+            {% endif %}
+            <h1 class="profile-flex-avatar-username">{{ user.username }}</h1>
+        </div>
+        <div class="profile-flex-content">
+            <h1 class="profile-flex-content-title">Мой профиль</h1>
+            <div class="profile-flex-content-block">
+                <a class="profile-flex-content-block-change" href="#">Редактировать</a>
+                <a class="profile-flex-content-block-change" href="#">Сменить пароль</a>
+            </div>
+            <div class="profile-flex-content-info">
+                {% if user.first_name and not user.last_name %}
+                    <p class="profile-flex-content-info-name">Имя и фамилия: {{ user.first_name }} </p>
+                {% elif user.last_name and not user.first_name %}
+                    <p class="profile-flex-content-info-name">Имя и фамилия: {{ user.last_name }} </p>
+                {% elif user.last_name and user.first_name %}
+                    <p class="profile-flex-content-info-name">Имя и фамилия: {{ user.last_name }} {{ user.first_name }}</p>
+                {% else %}
+                    <p class="profile-flex-content-info-name">Имя и фамилия: не указано</p>
+                {% endif %}
+                <p class="profile-flex-content-info-name">Email: {{ user.email }}</p>
+            </div>
+            <a href="#" class="profile-flex-content-my-courses">Мои курсы</a>
+            <a href="#" class="profile-flex-content-logout">Выход</a>
+        </div>
+    </div>
+{% endblock content %}
