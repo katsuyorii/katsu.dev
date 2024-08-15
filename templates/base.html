@@ -78,10 +78,19 @@
         </footer>
     </div>
 
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags %}
+                {% include 'popup_messages.html' %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/put_like.js' %}"></script>
     <script src="{% static 'js/put_dislike.js' %}"></script>
     <script src="{% static 'js/put_water.js' %}"></script>
+    <script src="{% static 'js/popup_messages.js' %}"></script>
     <script src="{% static 'js/slider.js' %}"></script>
 
 </body>

@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView, View
+from django.contrib import messages
 from django.contrib.auth import login, get_user_model
 from django.contrib.auth.tokens import default_token_generator 
 from django.utils.http import urlsafe_base64_decode 
@@ -24,6 +25,7 @@ class LoginView(FormView):
         user = form.cleaned_data['user']
         
         login(self.request, user)
+        messages.success(self.request, 'Вы успешно вошли в систему!')
 
         return super().form_valid(form)
         
