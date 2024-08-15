@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 
-from .views import LoginView, RegistrationView, ActivateEmailDoneView, ActivateEmailCheckView, ActivateEmailConfirmView, ActivateEmailErrorView, ActivateEmailRepeatSendView, ForgotPasswordView
+from .views import LoginView, RegistrationView, ActivateEmailDoneView, ActivateEmailCheckView, ActivateEmailConfirmView, ActivateEmailErrorView, ActivateEmailRepeatSendView, ForgotPasswordView, ForgotPasswordDoneView, ForgotPasswordCheckView, ForgotPasswordChangeView
 
 
 urlpatterns = [
@@ -15,4 +15,7 @@ urlpatterns = [
     path('activate_email_repeat/', login_required(ActivateEmailRepeatSendView.as_view()), name='activate_email_repeat'),
 
     path('forgot_password/', ForgotPasswordView.as_view(), name='forgot_password'),
+    path('forgot_password_done/', ForgotPasswordDoneView.as_view(), name='forgot_password_done'),
+    path('forgot_password_check/<uidb64>/<token>/', ForgotPasswordCheckView.as_view(), name='forgot_password_check'),
+    path('forgot_password_change/<uidb64>/', ForgotPasswordChangeView.as_view(), name='forgot_password_change'),
 ]

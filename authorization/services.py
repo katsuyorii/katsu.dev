@@ -32,7 +32,9 @@ class SendEmail:
         self.user.email_user(subject=subject, message=message)
 
     def send_forgot_password(self):
-        forgot_psw_url = 'index'
+        forgot_psw_url = reverse_lazy(  
+            "forgot_password_check", kwargs={"uidb64": self.uid, "token": self.token}  
+        )  
         subject = f"Восстановление пароля"  
         message = (  
             f"Привет, {self.user.username}!\n"  

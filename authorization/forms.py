@@ -86,3 +86,25 @@ class ForgotPasswordForm(forms.Form):
             raise forms.ValidationError('Пользователь с таким email не найден!')
         
         return email
+    
+
+class ForgotPasswordChangeForm(forms.Form):
+    """ Форма ввода нового пароля после восстановления пароля """
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs= {
+        'class': 'main-login-auth-block-input', 
+        'placeholder': 'Введите новый пароль',
+    }), validators=[validate_password])
+    
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs= {
+        'class': 'main-login-auth-block-input', 
+        'placeholder': 'Повторите новый пароль',
+    }), validators=[validate_password])
+    
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError('Введенные пароли отличаются!')
+        
+        return password2

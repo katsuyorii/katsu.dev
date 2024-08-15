@@ -5,7 +5,7 @@ from django.contrib.auth import login, get_user_model
 from django.contrib.auth.tokens import default_token_generator 
 from django.utils.http import urlsafe_base64_decode 
 
-from .forms import LoginForm, RegistrationForm, ForgotPasswordForm
+from .forms import LoginForm, RegistrationForm, ForgotPasswordForm, ForgotPasswordChangeForm
 from .tasks import activate_email_task, forgot_password_task
 
 
@@ -129,12 +129,69 @@ class ForgotPasswordView(FormView):
     template_name = 'authorization/forgot_password.html'
 
     def get_success_url(self):
-        return reverse_lazy('forgot_password')
+        return reverse_lazy('forgot_password_done')
 
     def form_valid(self, form): 
         email_form = form.cleaned_data['email']
         user = user_model.objects.get(email=email_form) 
         forgot_password_task.delay(user.pk)
+
+        return super().form_valid(form)
+            
+    def form_invalid(self, form):
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context['title'] = 'Восстановление пароля'
+
+            return context
+
+
+class ForgotPasswordDoneView(TemplateView):
+    """ Представление для страницы ожидания подтверждения восстановления пароля пользователя """
+    template_name = 'authorization/forgot_password_done.html'
+
+    def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context['title'] = 'Восстановление пароля'
+
+            return context
+
+
+class ForgotPasswordCheckView(View):
+    """ Представление для проверки отправленной ссылки на подтверждения на email пользователя """
+    def get(self, request, uidb64, token):  
+        try:  
+            uid = urlsafe_base64_decode(uidb64)  
+            user = user_model.objects.get(pk=uid)  
+        except (TypeError, ValueError, OverflowError, user_model.DoesNotExist):  
+            user = None
+        if user is not None and default_token_generator.check_token(user, token):  
+            return HttpResponseRedirect(reverse_lazy('forgot_password_change',  kwargs={'uidb64': uidb64}))
+        else:  
+            return HttpResponseRedirect(reverse_lazy('forgot_password'))
+
+
+class ForgotPasswordChangeView(FormView):
+    """ Представление для страницы ввода нового пароля после восстановления пароля """
+    form_class = ForgotPasswordChangeForm
+    template_name = 'authorization/forgot_password_change.html'
+
+    def get(self, request, uidb64):
+        return super().get(self, request, uidb64)
+
+    def get_success_url(self):
+        return reverse_lazy('login')
+
+    def form_valid(self, form): 
+        uid = urlsafe_base64_decode(self.kwargs['uidb64'])  
+        user = user_model.objects.get(pk=uid)
+
+        new_password = form.cleaned_data['password2']
+
+        user.set_password(new_password)
+        user.save()
 
         return super().form_valid(form)
             
