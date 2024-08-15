@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'css/auth.css' %}">
     <link rel="stylesheet" href="{% static 'css/training.css' %}">
     <link rel="stylesheet" href="{% static 'css/courses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/activate_email.css' %}">
     <link rel="stylesheet" href="{% static 'css/media.css' %}">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <title>{{ title }}</title>
@@ -41,6 +42,8 @@
                             <ul class="header-flex-auth-menu-list">
                                 {% if not user.is_authenticated %}
                                     <li><a href="{% url 'login' %}" class="header-flex-auth-menu-list-link">Вход</a></li>
+                                {% elif not user.is_active %}
+                                    <li><a href="{% url 'activate_email_done' %}" class="header-nav-menu-list-item-link">{{ user.username }}</a></li>
                                 {% else %}
                                     <li><a href="{% url 'profile' %}" class="header-nav-menu-list-item-link">{{ user.username }}</a></li>
                                 {% endif %}

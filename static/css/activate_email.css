@@ -1,0 +1,37 @@
+.activate-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 30px 30px;
+    border: 1px solid var(--border-block);
+    border-radius: 5px;
+    background-color: var(--view-background);
+    box-shadow: -3px 5px 16px rgba(0, 0, 0, 0.11);
+}
+
+.activate-flex-title {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.activate-flex-block {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.activate-flex-block-text {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.activate-flex-block-link {
+    color: var(--link-text);
+}
+
+.activate-flex-block-link:hover {
+    color: var(--link-text-hover);
+    transition: 0.3s linear;
+}
