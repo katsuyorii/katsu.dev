@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
+from django.contrib import messages
 from django.views.generic import ListView, DetailView, View
 from django.views.generic.edit import FormMixin
 from django.shortcuts import get_object_or_404
@@ -84,9 +85,11 @@ class PostDetailView(DetailView, FormMixin):
             return self.form_invalid(form)
         
     def form_valid(self, form):
+        messages.success(self.request, 'Комментарий успешно добавлен!')
         return super().form_valid(form)
     
     def form_invalid(self, form):
+        messages.error(self.request, 'Ошибка заполнения формы!')
         return HttpResponseRedirect(self.get_success_url())
     
 

@@ -41,7 +41,7 @@
             <p class="error-form-text">{{ form.errors.body }}</p>
         
             {% if not user.is_authenticated %}
-                <p class="post-flex-comments-auth">Чтобы оставлять комментарии, <a class="post-flex-comments-auth-link" href="#">авторизируйтесь.</a></p>
+                <p class="post-flex-comments-auth">Чтобы оставлять комментарии, <a class="post-flex-comments-auth-link" href="{% url 'login' %}">авторизируйтесь.</a></p>
             {% else %}
                 <form method="POST" method="POST">
                     {% csrf_token %}
