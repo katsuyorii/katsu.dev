@@ -18,7 +18,6 @@ class Grade(models.Model):
     
     def get_absolute_url(self):
         return reverse("grade_list", kwargs={"grade_slug": self.slug})
-    
 
 
 class Category(models.Model):

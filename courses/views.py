@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView
 
-from .models import Course, Lesson, Theme
+from .models import Course, Lesson
 
 
 class CoursesListView(ListView):

@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.views.generic import TemplateView, CreateView
 from django.urls import reverse_lazy
 
@@ -39,6 +40,14 @@ class ContactsView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('contacts')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Сообщение было успешно отправлено!')
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        messages.error(self.request, 'Ошибка заполнения формы!')
+        return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
