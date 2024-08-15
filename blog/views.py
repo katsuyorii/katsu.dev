@@ -17,7 +17,7 @@ class PostsListView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        queryset = Post.objects.all().annotate(like_count=Count('likes')).annotate(dislike_count=Count('dislikes')).annotate(waters_count=Count('waters')).order_by('-created_date').prefetch_related('tags')
+        queryset = Post.objects.all().annotate(like_count=Count('likes', distinct=True), dislike_count=Count('dislikes', distinct=True), waters_count=Count('waters', distinct=True)).order_by('-created_date').prefetch_related('tags')
 
         return queryset
 
@@ -36,7 +36,7 @@ class PostsTagListView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        queryset = Post.objects.filter(tags__slug=self.kwargs['tag_slug']).annotate(like_count=Count('likes')).annotate(dislike_count=Count('dislikes')).annotate(waters_count=Count('waters')).order_by('-created_date').prefetch_related('tags')
+        queryset = Post.objects.filter(tags__slug=self.kwargs['tag_slug']).annotate(like_count=Count('likes', distinct=True), dislike_count=Count('dislikes', distinct=True), waters_count=Count('waters', distinct=True)).order_by('-created_date').prefetch_related('tags')
 
         return queryset
 
