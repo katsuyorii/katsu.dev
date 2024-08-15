@@ -5,6 +5,9 @@ from django.contrib.auth.password_validation import validate_password
 from handlers.validators import ban_words_validator
 
 
+user_model = get_user_model()
+
+
 class LoginForm(forms.Form):
     """ Форма авторизации пользователей """
     email = forms.CharField(widget=forms.EmailInput(attrs={
@@ -63,9 +66,23 @@ class RegistrationForm(forms.Form):
     def clean_email(self):
         email = self.cleaned_data.get('email')
 
-        user_model = get_user_model()
-
         if user_model.objects.filter(email=email).exists():
             raise forms.ValidationError('Пользователь с таким email уже существует!')
+        
+        return email
+    
+
+class ForgotPasswordForm(forms.Form):
+    """ Форма восстановления пароля ввода email """
+    email = forms.CharField(widget=forms.EmailInput(attrs={
+        'class': 'main-login-auth-block-input', 
+        'placeholder': 'Введите ваш email',
+    }))
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+
+        if not user_model.objects.filter(email=email).exists():
+            raise forms.ValidationError('Пользователь с таким email не найден!')
         
         return email

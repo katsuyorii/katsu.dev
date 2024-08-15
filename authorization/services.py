@@ -30,3 +30,14 @@ class SendEmail:
         )  
 
         self.user.email_user(subject=subject, message=message)
+
+    def send_forgot_password(self):
+        forgot_psw_url = 'index'
+        subject = f"Восстановление пароля"  
+        message = (  
+            f"Привет, {self.user.username}!\n"  
+            "Вы получили это письмо, потому что мы приняли запрос на восстановление пароля для вашей учетной записи. Для восстановления пароля пройдите по ссылке:\n"  
+            f"https://{self.current_site}{forgot_psw_url}\n"  
+        )  
+
+        self.user.email_user(subject=subject, message=message)

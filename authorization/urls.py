@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 
-from .views import LoginView, RegistrationView, ActivateEmailDoneView, ActivateEmailCheckView, ActivateEmailConfirmView, ActivateEmailErrorView, ActivateEmailRepeatSendView
+from .views import LoginView, RegistrationView, ActivateEmailDoneView, ActivateEmailCheckView, ActivateEmailConfirmView, ActivateEmailErrorView, ActivateEmailRepeatSendView, ForgotPasswordView
 
 
 urlpatterns = [
@@ -13,4 +13,6 @@ urlpatterns = [
     path('activate_email_confirm/', login_required(ActivateEmailConfirmView.as_view()), name='activate_email_confirm'),
     path('activate_email_not_confirm/', login_required(ActivateEmailErrorView.as_view()), name='activate_email_not_confirm'),
     path('activate_email_repeat/', login_required(ActivateEmailRepeatSendView.as_view()), name='activate_email_repeat'),
+
+    path('forgot_password/', ForgotPasswordView.as_view(), name='forgot_password'),
 ]

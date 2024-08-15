@@ -5,8 +5,8 @@ from django.contrib.auth import login, get_user_model
 from django.contrib.auth.tokens import default_token_generator 
 from django.utils.http import urlsafe_base64_decode 
 
-from .forms import LoginForm, RegistrationForm
-from .tasks import activate_email_task
+from .forms import LoginForm, RegistrationForm, ForgotPasswordForm
+from .tasks import activate_email_task, forgot_password_task
 
 
 user_model = get_user_model()
@@ -121,3 +121,28 @@ class ActivateEmailRepeatSendView(View):
     def get(self, request): 
         activate_email_task.delay(request.user.pk)
         return HttpResponseRedirect(reverse_lazy('activate_email_done'))
+    
+
+class ForgotPasswordView(FormView):
+    """ Представления для страницы восстановления пароля ввода email пользователя """
+    form_class = ForgotPasswordForm
+    template_name = 'authorization/forgot_password.html'
+
+    def get_success_url(self):
+        return reverse_lazy('forgot_password')
+
+    def form_valid(self, form): 
+        email_form = form.cleaned_data['email']
+        user = user_model.objects.get(email=email_form) 
+        forgot_password_task.delay(user.pk)
+
+        return super().form_valid(form)
+            
+    def form_invalid(self, form):
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context['title'] = 'Восстановление пароля'
+
+            return context
