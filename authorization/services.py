@@ -19,7 +19,9 @@ class SendEmail:
         self.uid = urlsafe_base64_encode(str(self.user.pk).encode())
 
     def send_activate_email(self):
-        activate_url = 'index'
+        activate_url = reverse_lazy(  
+            "activate_email_check", kwargs={"uidb64": self.uid, "token": self.token}  
+        ) 
         subject = f"Активация аккаунта на сайте - {self.current_site}"  
         message = (  
             f"Благодарим за регистрацию на сайте {self.current_site}.\n"  
