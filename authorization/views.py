@@ -30,6 +30,7 @@ class LoginView(FormView):
         return super().form_valid(form)
         
     def form_invalid(self, form):
+        messages.error(self.request, 'Ошибка заполнения формы!')
         return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
@@ -55,17 +56,20 @@ class RegistrationView(FormView):
         user = user_model.objects.create_user(username=username, email=email, password=password1, is_active=False)
         login(self.request, user)
         activate_email_task.delay(user.pk)
+
+        messages.success(self.request, 'Регистрация прошла успешно!')
         
         return super().form_valid(form)
             
     def form_invalid(self, form):
+        messages.error(self.request, 'Ошибка заполнения формы!')
         return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
-            context = super().get_context_data(**kwargs)
-            context['title'] = 'Регистрация'
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Регистрация'
 
-            return context
+        return context
 
 
 class ActivateEmailDoneView(TemplateView):
@@ -195,9 +199,12 @@ class ForgotPasswordChangeView(FormView):
         user.set_password(new_password)
         user.save()
 
+        messages.success(self.request, 'Вы успешно сменили пароль!')
+
         return super().form_valid(form)
             
     def form_invalid(self, form):
+        messages.error(self.request, 'Ошибка заполнения формы!')
         return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
