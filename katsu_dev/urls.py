@@ -44,3 +44,7 @@ urlpatterns = [
 '''
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# Объявление для кастомной страницы ошибки 404
+handler404 = 'handlers.views.custom_404'
