@@ -1,8 +1,8 @@
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.views.generic import ListView, DetailView, View
-from django.views.generic.edit import FormMixin
+from django.views.generic import ListView, DetailView, View, FormView
+from django.views.generic.detail import SingleObjectMixin
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
 
@@ -48,13 +48,12 @@ class PostsTagListView(ListView):
         return context
     
 
-class PostDetailView(DetailView, FormMixin):
-    """ Представлени для страницы отдельного поста и добавления комментария """
+class PostDetailDisplay(DetailView):
+    """ Представление для страницы отдельного поста по методу GET """
     model = Post
     template_name = 'blog/post_detail.html'
     context_object_name = 'post'
     slug_url_kwarg = 'post_slug'
-    form_class = CommentForm
 
     def get_queryset(self):
         queryset = Post.objects.filter(slug=self.kwargs['post_slug']).prefetch_related('tags')
@@ -65,13 +64,23 @@ class PostDetailView(DetailView, FormMixin):
         context = super().get_context_data(**kwargs)
         context['title'] = self.object.title
         context['comments'] = Comment.objects.filter(post__slug=self.kwargs['post_slug']).order_by('-created_date').select_related('user')
+        context['form'] = CommentForm()
 
         return context
-    
+
+
+class PostDetailForm(SingleObjectMixin, FormView):
+    """ Представление для формы комментария на странице отдельного поста по методу POST"""
+    model = Post
+    template_name = 'blog/post_detail.html'
+    form_class = CommentForm
+    slug_url_kwarg = 'post_slug'
+
     def get_success_url(self):
         return reverse_lazy('post_detail', kwargs = {'post_slug': self.kwargs['post_slug']})
     
     def post(self, request, *args, **kwargs):
+        self.object = self.get_object() # Решает проблему с отсутствием object.
         form = self.get_form()
 
         if form.is_valid():
@@ -90,8 +99,26 @@ class PostDetailView(DetailView, FormMixin):
     
     def form_invalid(self, form):
         messages.error(self.request, 'Ошибка заполнения формы!')
-        return HttpResponseRedirect(self.get_success_url())
+        return super().form_invalid(form)
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.object.title
+        context['comments'] = Comment.objects.filter(post__slug=self.kwargs['post_slug']).order_by('-created_date').select_related('user')
+
+        return context
+    
+
+class PostDetailView(View):
+    """ Представление для роутинга представлений по методам на странице отдельного поста """
+    def get(self, request, *args, **kwargs):
+        view = PostDetailDisplay.as_view()
+        return view(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        view = PostDetailForm.as_view()
+        return view(request, *args, **kwargs)
+
 
 class PutLikeView(View):
     """ Представления для кнопки - «Лайк» (огонек) """

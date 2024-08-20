@@ -38,7 +38,11 @@
         <div class="post-flex-comments">
             <p class="post-flex-comments-title">Комменатрии</p>
 
-            <p class="error-form-text">{{ form.errors.body }}</p>
+            {% if form.body.errors %}
+                {% for error in form.body.errors %}
+                    <p class="error-form-text">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
         
             {% if not user.is_authenticated %}
                 <p class="post-flex-comments-auth">Чтобы оставлять комментарии, <a class="post-flex-comments-auth-link" href="{% url 'login' %}">авторизируйтесь.</a></p>
