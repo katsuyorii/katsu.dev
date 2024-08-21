@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_cleanup',
     'django_ckeditor_5',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -235,3 +236,9 @@ CACHES = {
         }
     }
 }
+
+
+# RECAPTCHA SETTINGS
+
+RECAPTCHA_PUBLIC_KEY = '6LeJaSsqAAAAAKxDUh9Kej5hCYlsuJ7VIgooJSwl'
+RECAPTCHA_PRIVATE_KEY = '6LeJaSsqAAAAABxLSF9_qzYRdHZOM0u9sWW9jhzV'

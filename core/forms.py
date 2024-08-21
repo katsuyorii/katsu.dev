@@ -1,6 +1,8 @@
 from django.forms import ModelForm
 from django import forms
 
+from django_recaptcha.fields import ReCaptchaField
+
 from .models import Feedback
 
 
@@ -22,6 +24,8 @@ class FeedbackForm(ModelForm):
         'rows': '4',
     }))
 
+    recaptcha = ReCaptchaField()
+
     class Meta:
         model = Feedback
-        fields = ('username', 'email', 'message')
+        fields = ('username', 'email', 'message', 'recaptcha')
