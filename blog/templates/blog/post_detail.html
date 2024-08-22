@@ -50,6 +50,7 @@
                 <form method="POST" method="POST">
                     {% csrf_token %}
                     {{ form.body }}
+                    {{ form.recaptcha }}
                     <div class="post-flex-comments-block">
                         <button type="submit" class="post-flex-comments-button">Отправить</button>
                     </div>
