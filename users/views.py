@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 
 from .forms import PasswordChangeForm, InfoProfileChangeForm
+from .tasks import process_avatar_task
 from authorization.tasks import activate_email_task
 
 
@@ -71,7 +72,10 @@ class InfoProfileChangeView(UpdateView):
         messages.success(self.request, 'Изменения прошли успешно!')
 
         if current_email.email == new_email:
-            return super().form_valid(form)
+            self.object = form.save(commit=False)
+            self.object.save()
+            process_avatar_task.delay(self.request.user.pk, self.request.user.avatar.path)
+            return HttpResponseRedirect(reverse_lazy('profile'))
         else:
             self.object = form.save(commit=False)
             self.object.is_active = False
