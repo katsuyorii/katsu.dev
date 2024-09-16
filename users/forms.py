@@ -45,7 +45,9 @@ class InfoProfileChangeForm(forms.ModelForm):
         'class': 'main-login-auth-block-input', 
     }), required=False, validators=[ban_words_validator])
 
-    avatar = forms.ImageField(required=False, widget=forms.FileInput())
+    avatar = forms.ImageField(widget=forms.FileInput(attrs={
+        'accept': '.jpg, .jpeg, .png, .svg, .webp, .heif, .avif',
+    }), required=False)
     
     class Meta:
         user_model = get_user_model()
