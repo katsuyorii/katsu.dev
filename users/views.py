@@ -66,15 +66,19 @@ class InfoProfileChangeView(UpdateView):
         return reverse_lazy('profile')
     
     def form_valid(self, form):
-        current_email = user_model.objects.get(pk=self.request.user.pk)
+        current_user = user_model.objects.get(pk=self.request.user.pk)
         new_email = form.cleaned_data['email']
+        new_avatar = form.cleaned_data['avatar']
 
         messages.success(self.request, 'Изменения прошли успешно!')
 
-        if current_email.email == new_email:
+        if current_user.email == new_email:
             self.object = form.save(commit=False)
             self.object.save()
-            process_avatar_task.delay(self.request.user.pk, self.request.user.avatar.path)
+            
+            if not current_user.avatar == new_avatar:
+                process_avatar_task.delay(self.request.user.pk, self.request.user.avatar.path)
+
             return HttpResponseRedirect(reverse_lazy('profile'))
         else:
             self.object = form.save(commit=False)
