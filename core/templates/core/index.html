@@ -16,7 +16,13 @@
             {% for course in courses %}
                 <div class="main-courses-flex-item">
                     <div class="main-courses-flex-item-news">
-                        <div class="main-courses-flex-item-news-circle-new"></div>
+                        {% if course.get_status_display == 'Новинка' %}
+                            <div class="main-courses-flex-item-news-circle-new"></div>
+                        {% elif course.get_status_display == 'Хит' %}
+                            <div class="main-courses-flex-item-news-circle-hit"></div>
+                        {% else %}
+                            <div class="main-courses-flex-item-news-circle-update"></div>
+                        {% endif %}
                         <p class="main-courses-flex-item-news-text">{{ course.get_status_display }}</p>
                     </div>
                     <h2 class="main-courses-flex-item-name">{{ course.title }}</h2>

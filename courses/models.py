@@ -47,8 +47,8 @@ class LessonMaterial(models.Model):
 
 class Lesson(models.Model):
     """ Модель урока раздела курса """
-    name = models.CharField(verbose_name='Наименование урока', max_length=128, unique=True, db_index=True)
-    slug = models.SlugField(verbose_name='Слаг', max_length=255, unique=True, db_index=True)
+    name = models.CharField(verbose_name='Наименование урока', max_length=128, db_index=True)
+    slug = models.SlugField(verbose_name='Слаг', max_length=255, db_index=True)
     body = CKEditor5Field(verbose_name='Содержимое урока', config_name='default')
     materials = models.ManyToManyField(verbose_name='Материалы к уроку', to=LessonMaterial)
     questions = models.ManyToManyField(verbose_name='Вопросы к уроку', to=LessonQuestion)
@@ -63,7 +63,7 @@ class Lesson(models.Model):
 
 class Theme(models.Model):
     """ Модель раздела курса """
-    name = models.CharField(verbose_name='Наименование раздела курса', max_length=128, unique=True, db_index=True)
+    name = models.CharField(verbose_name='Наименование раздела курса', max_length=128, db_index=True)
     description = models.CharField(verbose_name='Описание раздела', max_length=255)
     lessons = models.ManyToManyField(verbose_name='Уроки', to=Lesson)
 
