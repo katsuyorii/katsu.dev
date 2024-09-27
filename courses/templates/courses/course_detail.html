@@ -27,7 +27,7 @@
                     </div>
                     <div class="course-flex-row-left-block">
                         {% if user.is_authenticated %}
-                            <a href="#" class="course-flex-row-left-start">Начать обучение</a>
+                            <a href="{% url 'lesson_detail' course_slug=course.slug lesson_slug=slug_lesson_first %}" class="course-flex-row-left-start">Начать обучение</a>
                         {% else %}
                             <a href="{% url 'login' %}" class="course-flex-row-left-start">Начать обучение</a>
                         {% endif %}
@@ -69,7 +69,7 @@
             </div>
             <div class="course-flex-info-right">
                 {% if user.is_authenticated %}
-                    <a class="course-flex-info-right-button" href="#">Старт</a>
+                    <a class="course-flex-info-right-button" href="{% url 'lesson_detail' course_slug=course.slug lesson_slug=slug_lesson_first %}">Старт</a>
                 {% else %}
                     <a class="course-flex-info-right-button" href="{% url 'login' %}">Старт</a>
                 {% endif %}

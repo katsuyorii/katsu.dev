@@ -32,6 +32,10 @@ class CourseDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = self.object.title
 
+        first_theme = self.object.themes.first()
+        first_lesson = first_theme.lessons.first()
+        context['slug_lesson_first'] = first_lesson.slug
+
         return context
 
 
