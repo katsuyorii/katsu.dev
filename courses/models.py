@@ -52,10 +52,12 @@ class Lesson(models.Model):
     body = CKEditor5Field(verbose_name='Содержимое урока', config_name='default')
     materials = models.ManyToManyField(verbose_name='Материалы к уроку', to=LessonMaterial)
     questions = models.ManyToManyField(verbose_name='Вопросы к уроку', to=LessonQuestion)
+    created_date = models.DateTimeField(verbose_name='Дата и время добавления', auto_now_add=True)
 
     class Meta:
         verbose_name = 'Урок'
         verbose_name_plural = 'Уроки'
+        ordering = ['created_date']
 
     def __str__(self):
         return self.name
@@ -66,10 +68,12 @@ class Theme(models.Model):
     name = models.CharField(verbose_name='Наименование раздела курса', max_length=128, unique=True, db_index=True)
     description = models.CharField(verbose_name='Описание раздела', max_length=255)
     lessons = models.ManyToManyField(verbose_name='Уроки', to=Lesson)
+    created_date = models.DateTimeField(verbose_name='Дата и время добавления', auto_now_add=True)
 
     class Meta:
         verbose_name = 'Раздел курса'
         verbose_name_plural = 'Разделы курса'
+        ordering = ['created_date']
 
     def __str__(self):
         return self.name
