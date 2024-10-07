@@ -79,7 +79,7 @@ class InfoProfileChangeView(UpdateView):
             if not current_user.avatar == new_avatar:
                 process_avatar_task.delay(self.request.user.pk, self.request.user.avatar.path)
 
-            return HttpResponseRedirect(reverse_lazy('profile'))
+            return HttpResponseRedirect(reverse_lazy('index'))
         else:
             self.object = form.save(commit=False)
             self.object.is_active = False

@@ -50,8 +50,8 @@ class Lesson(models.Model):
     name = models.CharField(verbose_name='Наименование урока', max_length=128)
     slug = models.SlugField(verbose_name='Слаг', max_length=255, unique=True, db_index=True)
     body = CKEditor5Field(verbose_name='Содержимое урока', config_name='default')
-    materials = models.ManyToManyField(verbose_name='Материалы к уроку', to=LessonMaterial)
-    questions = models.ManyToManyField(verbose_name='Вопросы к уроку', to=LessonQuestion)
+    materials = models.ManyToManyField(verbose_name='Материалы к уроку', to=LessonMaterial, blank=True)
+    questions = models.ManyToManyField(verbose_name='Вопросы к уроку', to=LessonQuestion, blank=True)
     created_date = models.DateTimeField(verbose_name='Дата и время добавления', auto_now_add=True)
 
     class Meta:
