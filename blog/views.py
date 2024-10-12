@@ -123,6 +123,9 @@ class PostDetailView(View):
 class PutLikeView(View):
     """ Представления для кнопки - «Лайк» (огонек) """
     def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return JsonResponse({'error': 'Not authenticated'})
+        
         selected_post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
         is_exists = Like.objects.filter(post=selected_post, user=request.user).exists()
 
@@ -141,6 +144,9 @@ class PutLikeView(View):
 class PutDislikeView(View):
     """ Представления для кнопки - «Дизлайк» (какашка) """
     def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return JsonResponse({'error': 'Not authenticated'})
+        
         selected_post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
         is_exists = Dislike.objects.filter(post=selected_post, user=request.user).exists()
 
@@ -159,6 +165,9 @@ class PutDislikeView(View):
 class PutWaterView(View):
     """ Представления для кнопки - «Вода» (капля) """
     def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return JsonResponse({'error': 'Not authenticated'})
+        
         selected_post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
         is_exists = Water.objects.filter(post=selected_post, user=request.user).exists()
 
