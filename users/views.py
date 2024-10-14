@@ -99,3 +99,14 @@ class InfoProfileChangeView(UpdateView):
         context['title'] = 'Редактирование профиля'
 
         return context
+
+
+class MyCoursesListView(TemplateView):
+    """ Представление для страницы сайта - «Мои курсы» """
+    template_name = 'users/my_courses.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Мои курсы'
+
+        return context

@@ -138,10 +138,10 @@ class PostsListSearchView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Блог'
-        context['tags'] = Tag.objects.all()
-
         filter_value = self.request.GET.get('filter')
+        
+        context['title'] = f'Поиск по запросу - «{ filter_value }»'
+        context['tags'] = Tag.objects.all()
         context['filter_value'] = filter_value
 
         return context

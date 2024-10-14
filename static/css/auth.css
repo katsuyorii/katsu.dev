@@ -63,6 +63,24 @@
     background-color: var(--button-background);
 }
 
+.profile-flex-content-courses-item-button-block {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.profile-flex-content-courses-item-button-review {
+    padding: 9px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: var(--button-text);
+    background-color: green;
+}
+
+.profile-flex-content-courses-item-button-review:hover {
+    background-color: darkgreen;
+    transition: 0.3s linear;
+}
 
 .main-login-auth-block-button:hover {
     background-color: var(--button-background-hover);
