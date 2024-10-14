@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import ListView, DetailView, View, FormView
@@ -118,6 +118,33 @@ class PostDetailView(View):
     def post(self, request, *args, **kwargs):
         view = PostDetailForm.as_view()
         return view(request, *args, **kwargs)
+    
+
+class PostsListSearchView(ListView):
+    """ Представление для поиска постов по названию """
+    model = Post
+    template_name = 'blog/posts_list_search.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        filter_value = self.request.GET.get('filter')
+
+        if filter_value == "":
+            queryset = Post.objects.none()
+        else:
+            queryset = Post.objects.filter(title__icontains=filter_value).annotate(like_count=Count('likes', distinct=True), dislike_count=Count('dislikes', distinct=True), waters_count=Count('waters', distinct=True)).order_by('-created_date').prefetch_related('tags')
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Блог'
+        context['tags'] = Tag.objects.all()
+
+        filter_value = self.request.GET.get('filter')
+        context['filter_value'] = filter_value
+
+        return context
 
 
 class PutLikeView(View):

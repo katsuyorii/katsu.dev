@@ -5,9 +5,8 @@
 {% block content %}
     <div class="blog-flex">
         <div class="blog-flex-content">
-            
-            {% for post in posts %}
             {% csrf_token %}
+            {% for post in posts %}
                 <div class="blog-flex-content-item">
                     <div class="blog-flex-content-item-categories">
                         {% for tag in post.tags.all %}
@@ -42,8 +41,8 @@
         </div>
         <div class="blog-flex-nav">
             <div class="blog-flex-nav-search">
-                <form method="GET">
-                    <input id="search" name="search" placeholder="Поиск..." type="text" class="blog-flex-nav-search-input">
+                <form action="{% url 'search_blog' %}" method="GET">
+                    <input id="filter" name="filter" placeholder="Поиск..." type="text" class="blog-flex-nav-search-input">
                     <button type="submit" class="blog-flex-nav-seacrh-block-button">Поиск</button>
                 </form>
             </div>
