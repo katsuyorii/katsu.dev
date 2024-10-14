@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView
 
-from .models import Course, Lesson
+from .models import Course, Lesson, UsersStudyCourses
 
 
 class CoursesListView(ListView):
@@ -53,7 +53,12 @@ class LessonDetailView(DetailView):
 
      def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        selected_course = Course.objects.prefetch_related('themes__lessons').get(slug=self.kwargs['course_slug'])
+
         context['title'] = self.object.name
-        context['selected_course'] = Course.objects.prefetch_related('themes__lessons').get(slug=self.kwargs['course_slug'])
+        context['selected_course'] = selected_course
+
+        new_study = UsersStudyCourses.objects.get_or_create(user=self.request.user)[0]
+        new_study.course.add(selected_course)
 
         return context

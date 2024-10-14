@@ -5,16 +5,22 @@
     <div class="profile-flex-content-pr">
         <h1 class="profile-flex-content-title">Мои курсы</h1>
         <div class="profile-flex-content-courses">
-            {% for course in my_courses.course.all %}
-                <div class="profile-flex-content-courses-item">
-                    <p class="profile-flex-content-courses-item-title">{{ course.title }}</p>
-                    <p class="profile-flex-content-courses-item-desc">{{ course.short_description }}</p>
-                    <div class="profile-flex-content-courses-item-button-block">
-                        <a class="profile-flex-content-courses-item-button" href="#">Продолжить обучение</a>
-                        <a class="profile-flex-content-courses-item-button-review" href="#">Оставить отзыв</a>
-                    </div>
-                </div>
-            {% endfor %}
+            {% if my_courses %}
+                {% for courses in my_courses %}
+                    {% for course in courses.course.all %}
+                        <div class="profile-flex-content-courses-item">
+                            <p class="profile-flex-content-courses-item-title">{{ course.title }}</p>
+                            <p class="profile-flex-content-courses-item-desc">{{ course.short_description }}</p>
+                            <div class="profile-flex-content-courses-item-button-block">
+                                <a class="profile-flex-content-courses-item-button" href="{{ course.get_absolute_url }}">Продолжить обучение</a>
+                                <a class="profile-flex-content-courses-item-button-review" href="#">Оставить отзыв</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% else %}
+                {% include "my-courses-no-items.html" %}
+            {% endif %}
         </div>
     </div>
 {% endblock content %}
