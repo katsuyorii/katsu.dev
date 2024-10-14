@@ -5,22 +5,16 @@
     <div class="profile-flex-content-pr">
         <h1 class="profile-flex-content-title">Мои курсы</h1>
         <div class="profile-flex-content-courses">
-            <div class="profile-flex-content-courses-item">
-                <p class="profile-flex-content-courses-item-title">Руководство по выживанию на Django. Уровень 2</p>
-                <p class="profile-flex-content-courses-item-desc">Данный курс посвящен азам написания веб-приложений на фреймворке Django.</p>
-                <div class="profile-flex-content-courses-item-button-block">
-                    <a class="profile-flex-content-courses-item-button" href="#">Продолжить обучение</a>
-                    <a class="profile-flex-content-courses-item-button-review" href="#">Оставить отзыв</a>
+            {% for course in my_courses.course.all %}
+                <div class="profile-flex-content-courses-item">
+                    <p class="profile-flex-content-courses-item-title">{{ course.title }}</p>
+                    <p class="profile-flex-content-courses-item-desc">{{ course.short_description }}</p>
+                    <div class="profile-flex-content-courses-item-button-block">
+                        <a class="profile-flex-content-courses-item-button" href="#">Продолжить обучение</a>
+                        <a class="profile-flex-content-courses-item-button-review" href="#">Оставить отзыв</a>
+                    </div>
                 </div>
-            </div>
-            <div class="profile-flex-content-courses-item">
-                <p class="profile-flex-content-courses-item-title">Руководство по выживанию на Django. Уровень 2</p>
-                <p class="profile-flex-content-courses-item-desc">Данный курс посвящен азам написания веб-приложений на фреймворке Django.</p>
-                <div class="profile-flex-content-courses-item-button-block">
-                    <a class="profile-flex-content-courses-item-button" href="#">Продолжить обучение</a>
-                    <a class="profile-flex-content-courses-item-button-review" href="#">Оставить отзыв</a>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}

@@ -9,6 +9,7 @@ from django.shortcuts import redirect
 from .forms import PasswordChangeForm, InfoProfileChangeForm
 from .tasks import process_avatar_task
 from authorization.tasks import activate_email_task
+from courses.models import UsersStudyCourses
 
 
 user_model = get_user_model()
@@ -108,5 +109,6 @@ class MyCoursesListView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Мои курсы'
+        context['my_courses'] = UsersStudyCourses.objects.prefetch_related('course').get(user=self.request.user)
 
         return context

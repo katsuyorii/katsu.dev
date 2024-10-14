@@ -107,7 +107,19 @@ class Course(models.Model):
     
     def get_absolute_url(self):
         return reverse("course_detail", kwargs={"course_slug": self.slug})
-    
+
+
+class UsersStudyCourses(models.Model):
+    """ Модель пользователей и изучаемых ими курсов """
+    user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE)
+    course = models.ManyToManyField(verbose_name='Курсы', to=Course)
+
+    class Meta:
+        verbose_name = 'Изучаемые курсы пользователей'
+        verbose_name_plural = 'Изучаемые курсы пользователей'
+
+    def __str__(self):
+        return f'Курсы пользователя - {self.user.email}'
 
 
 class Review(models.Model):
