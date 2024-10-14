@@ -4,23 +4,27 @@
 {% block content %}
     <div class="blog-flex">
         <div class="blog-flex-content">
+            <h1 class="blog-flex-content-title">Результаты поиска по запросу - «{{ filter_value }}»</h1>
             {% csrf_token %}
-
-            {% for question in questions %}
-                <div class="blog-flex-content-item">
-                    <div class="blog-flex-content-item-categories">
-                        {% for category in question.categories.all %}
-                            <a class="blog-flex-content-item-categories-item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-                        {% endfor %}
-                        <a class="blog-flex-content-item-categories-grade" href="{{ question.grade.get_absolute_url }}">{{ question.grade.name }}</a>
+            {% if questions %}
+                {% for question in questions %}
+                    <div class="blog-flex-content-item">
+                        <div class="blog-flex-content-item-categories">
+                            {% for category in question.categories.all %}
+                                <a class="blog-flex-content-item-categories-item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                            {% endfor %}
+                            <a class="blog-flex-content-item-categories-grade" href="{{ question.grade.get_absolute_url }}">{{ question.grade.name }}</a>
+                        </div>
+                        <h1 class="blog-flex-content-item-title-trainee" href="#">{{ question.title }}</h1>
+                        <details>
+                            <summary class="lesson-flex-wrapper-questions-item-legend">Показать ответ</summary>
+                            <p class="blog-flex-content-item-title-trainee-text">{{ question.answer|safe }}</p>
+                        </details>
                     </div>
-                    <h1 class="blog-flex-content-item-title-trainee" href="#">{{ question.title }}</h1>
-                    <details>
-                        <summary class="lesson-flex-wrapper-questions-item-legend">Показать ответ</summary>
-                        <p class="blog-flex-content-item-title-trainee-text">{{ question.answer|safe }}</p>
-                    </details>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                {% include "no-items.html" %}
+            {% endif %}
         </div>
         <div class="blog-flex-nav">
             <div class="blog-flex-nav-search">
