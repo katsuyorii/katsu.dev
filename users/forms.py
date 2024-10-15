@@ -3,6 +3,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import get_user_model
 
 from handlers.validators import ban_words_validator
+from courses.models import Review
 
 
 class PasswordChangeForm(PasswordChangeForm):
@@ -53,3 +54,16 @@ class InfoProfileChangeForm(forms.ModelForm):
         user_model = get_user_model()
         model = user_model
         fields = ['username', 'email', 'avatar', 'first_name', 'last_name']
+
+
+class ReviewForm(forms.ModelForm):
+    """ Форма для добавления и редактирования отзыва на курс пользователем """
+    body = forms.CharField(widget=forms.Textarea(attrs={
+        'class': 'main-login-auth-block-input',
+        'placeholder': 'Введите здесь ваш отзыв...',
+        'rows': '4',
+    }))
+
+    class Meta:
+        model = Review
+        fields = ['body',]

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="contacts-flex">
+        <h1 class="contacts-flex-title">Отзыв на курс</h1>
+        <div class="main-login-auth">
+            <form class="main-login-auth-form" method="POST">
+                {% csrf_token %}
+                <label for="{{ form.body.id_for_label }}">Текст отзыва</label>
+                {{ form.body }}
+                <button class="main-login-auth-block-button" type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
