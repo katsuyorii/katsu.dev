@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth import logout, get_user_model
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render, get_object_or_404
 
 from .forms import PasswordChangeForm, InfoProfileChangeForm, ReviewForm
 from .tasks import process_avatar_task
@@ -138,7 +138,7 @@ class ReviewAddView(CreateView):
             return self.form_invalid(form)
 
     def form_valid(self, form):
-        messages.success(self.request, 'Отзыв успешно был отправлен!')
+        messages.success(self.request, 'Отзыв успешно отправлен!')
         return super().form_valid(form)
     
     def form_invalid(self, form):
@@ -148,5 +148,36 @@ class ReviewAddView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Оставить отзыв на курс'
+
+        return context
+    
+
+class ReviewChangeView(View):
+    """ Представление для страницы редактирования отзыва на курс """
+    template_name = 'users/review.html'
+
+    def get(self, request, course_slug):
+        selected_course = get_object_or_404(Course, slug=course_slug)
+        review = get_object_or_404(Review, course=selected_course)
+        form = ReviewForm(instance=review)
+
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, course_slug):
+        selected_course = get_object_or_404(Course, slug=course_slug)
+        review = get_object_or_404(Review, course=selected_course)
+        form = ReviewForm(request.POST, instance=review)
+
+        if form.is_valid():
+            form.save()
+            messages.success(self.request, 'Отзыв успешно редактирован!')
+            return redirect(reverse_lazy('my_courses'))
+        
+        messages.error(self.request, 'Ошибка заполнения формы!')
+        return render(request, self.template_name, {'form': form})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Редактировать отзыв на курс'
 
         return context

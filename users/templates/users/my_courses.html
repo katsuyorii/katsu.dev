@@ -13,7 +13,7 @@
                             <p class="profile-flex-content-courses-item-desc">{{ course.short_description }}</p>
                             <div class="profile-flex-content-courses-item-button-block">
                                 <a class="profile-flex-content-courses-item-button" href="{{ course.get_absolute_url }}">Продолжить обучение</a>
-                                <a class="profile-flex-content-courses-item-button-review" href="{% url 'review' course_slug=course.slug %}">Оставить отзыв</a>
+                                <a class="profile-flex-content-courses-item-button-review" href="{% url 'review_change' course_slug=course.slug %}">Оставить отзыв</a>
                             </div>
                         </div>
                     {% endfor %}
