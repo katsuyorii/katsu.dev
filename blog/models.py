@@ -108,3 +108,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.user.email} | {self.post.title} | {self.created_date} | {self.body}'
+    
+    def get_absolute_url(self):
+        return reverse("comment_change", kwargs={"comment_pk": self.pk})

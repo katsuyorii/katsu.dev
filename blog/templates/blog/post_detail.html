@@ -50,8 +50,8 @@
                 <form method="POST" method="POST">
                     {% csrf_token %}
                     {{ form.body }}
-                    {{ form.recaptcha }}
                     <div class="post-flex-comments-block">
+                        {{ form.recaptcha }}
                         <button type="submit" class="post-flex-comments-button">Отправить</button>
                     </div>
                 </form>
@@ -73,7 +73,7 @@
                                     <p>{{ comment.user.username }}</p>
                                     <p>{{ comment.created_date }}</p>
                                     {% if comment.user == user %}
-                                        <a class="post-flex-comments-column-item-content-info-edit" href="#">Редактировать</a>
+                                        <a class="post-flex-comments-column-item-content-info-edit" href="{{ comment.get_absolute_url }}">Редактировать</a>
                                         <a class="post-flex-comments-column-item-content-info-delete" href="#">Удалить</a>
                                     {% endif %}
                                 </div>

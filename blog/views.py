@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.views.generic import ListView, DetailView, View, FormView
+from django.views.generic import ListView, DetailView, View, FormView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
@@ -208,3 +208,29 @@ class PutWaterView(View):
             count_water = selected_post.get_count_water()
 
         return JsonResponse({'count_water': count_water})
+    
+
+class CommentChangeView(UpdateView):
+    """ Представление для страницы редактирования комментария """
+    model = Comment
+    template_name = 'blog/comment_change.html'
+    form_class = CommentForm
+    pk_url_kwarg = 'comment_pk'
+
+    def get_success_url(self):
+        return reverse_lazy('posts_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Комментарий успешно изменен!')
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        messages.error(self.request, 'Ошибка заполнения формы!')
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['title'] = 'Редактирование комментария'
+
+        return context
