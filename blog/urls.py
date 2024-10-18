@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import PostsListView, PostsTagListView, PostDetailView, PostsListSearchView, PutLikeView, PutDislikeView, PutWaterView, CommentChangeView, CommentDelete
-
+from .decorators import creator_comment_only
 
 urlpatterns = [
     path('', PostsListView.as_view(), name='posts_list'),
@@ -13,6 +13,6 @@ urlpatterns = [
     path('put_dislike/<int:post_pk>/', PutDislikeView.as_view(), name='put_dislike'),
     path('put_water/<int:post_pk>/', PutWaterView.as_view(), name='put_water'),
 
-    path('comment_change/<int:comment_pk>/', CommentChangeView.as_view(), name='comment_change'),
-    path('comment_delete/<int:comment_pk>/', CommentDelete.as_view(), name='comment_delete'),
+    path('comment_change/<int:comment_pk>/', creator_comment_only(CommentChangeView.as_view()), name='comment_change'),
+    path('comment_delete/<int:comment_pk>/', creator_comment_only(CommentDelete.as_view()), name='comment_delete'),
 ]
