@@ -74,7 +74,7 @@
                                     <p>{{ comment.created_date }}</p>
                                     {% if comment.user == user %}
                                         <a class="post-flex-comments-column-item-content-info-edit" href="{{ comment.get_absolute_url }}">Редактировать</a>
-                                        <a class="post-flex-comments-column-item-content-info-delete" href="#">Удалить</a>
+                                        <a class="post-flex-comments-column-item-content-info-delete" href="{% url 'comment_delete' comment_pk=comment.pk%}">Удалить</a>
                                     {% endif %}
                                 </div>
                                 <p class="post-flex-comments-column-item-content-text">{{ comment.body }}</p>

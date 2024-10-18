@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import ListView, DetailView, View, FormView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.db.models import Count
 
 from .models import Post, Tag, Comment, Like, Dislike, Water
@@ -234,3 +234,17 @@ class CommentChangeView(UpdateView):
         context['title'] = 'Редактирование комментария'
 
         return context
+
+
+class CommentDelete(View):
+    """ Представление для удаления комментария пользователя """
+    def get(self, request, comment_pk):
+        comment = get_object_or_404(Comment, pk=comment_pk)
+        comment.delete()
+
+        messages.success(request, 'Ваш комментарий успешно удален!')
+
+        return redirect(reverse_lazy('posts_list'))
+    
+    
+     

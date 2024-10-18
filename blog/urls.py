@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import PostsListView, PostsTagListView, PostDetailView, PostsListSearchView, PutLikeView, PutDislikeView, PutWaterView, CommentChangeView
+from .views import PostsListView, PostsTagListView, PostDetailView, PostsListSearchView, PutLikeView, PutDislikeView, PutWaterView, CommentChangeView, CommentDelete
 
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('put_water/<int:post_pk>/', PutWaterView.as_view(), name='put_water'),
 
     path('comment_change/<int:comment_pk>/', CommentChangeView.as_view(), name='comment_change'),
+    path('comment_delete/<int:comment_pk>/', CommentDelete.as_view(), name='comment_delete'),
 ]
